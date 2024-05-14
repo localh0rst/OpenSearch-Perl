@@ -61,13 +61,13 @@
    "release_status" : "unstable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/localh0rst/OpenSearch/issues"
+         "web" : "https://github.com/localh0rst/OpenSearch-Perl/issues"
       },
-      "homepage" : "https://github.com/localh0rst/OpenSearch",
+      "homepage" : "https://github.com/localh0rst/OpenSearch-Perl",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/localh0rst/OpenSearch.git",
-         "web" : "https://github.com/localh0rst/OpenSearch"
+         "url" : "https://github.com/localh0rst/OpenSearch-Perl.git",
+         "web" : "https://github.com/localh0rst/OpenSearch-Perl"
       }
    },
    "version" : "0.01",

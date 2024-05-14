@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/localh0rst/OpenSearch/actions/workflows/test.yml/badge.svg)](https://github.com/localh0rst/OpenSearch/actions)
+[![Actions Status](https://github.com/localh0rst/OpenSearch-Perl/actions/workflows/test.yml/badge.svg)](https://github.com/localh0rst/OpenSearch-Perl/actions)
 # NAME
 
 OpenSearch - It's new $module
