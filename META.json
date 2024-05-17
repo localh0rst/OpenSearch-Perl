@@ -71,7 +71,7 @@
          "web" : "https://github.com/localh0rst/OpenSearch-Perl"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_serialization_backend" : "JSON::PP version 4.16",
    "x_static_install" : 1
 }
