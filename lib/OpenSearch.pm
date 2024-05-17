@@ -61,7 +61,7 @@ __END__
 
 =head1 NAME
 
-OpenSearch - It's new $module
+C<OpenSearch> - A Perl client for OpenSearch (https://opensearch.org/)
 
 =head1 SYNOPSIS
 
@@ -103,7 +103,58 @@ OpenSearch - It's new $module
 
 =head1 DESCRIPTION
 
-OpenSearch is ...
+This module is a Perl client for OpenSearch (https://opensearch.org/).
+It currently only supports a small subset of the OpenSearch API.
+
+=head1 METHODS
+
+=head2 cluster
+
+returns a new OpenSearch::Cluster object
+
+  my $cluster = $opensearch->cluster;
+
+=head2 cluster_allocation
+
+returns a new OpenSearch::Cluster::Allocation object
+
+  my $cluster = $opensearch->cluster_allocation;
+
+=head2 cluster_health
+
+returns a new OpenSearch::Cluster::Health object
+
+  my $cluster = $opensearch->cluster_health;
+
+=head2 cluster_settings
+
+returns a new OpenSearch::Cluster::Settings object
+
+  my $cluster = $opensearch->cluster_settings;
+
+=head2 cluster_stats
+
+returns a new OpenSearch::Cluster::Stats object
+
+  my $cluster = $opensearch->cluster_stats;
+
+=head2 remote
+
+returns a new OpenSearch::Remote object
+
+  my $remote = $opensearch->remote;
+
+=head2 remote_info
+
+returns a new OpenSearch::Remote::Info object
+
+  my $remote = $opensearch->remote_info;
+
+=head2 search
+
+returns a new OpenSearch::Search object
+
+  my $search = $opensearch->search;
 
 =head1 LICENSE
 
