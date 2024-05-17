@@ -9,5 +9,6 @@ requires 'MooseX::Singleton';
 
 on 'test' => sub {
     requires 'Test::More', '0.98';
+    requires 'Test::Pod::Coverage';
 };
 
