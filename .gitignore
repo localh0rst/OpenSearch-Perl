@@ -22,6 +22,7 @@ cover_db/
 *.o
 *.obj
 
+
 !LICENSE
 
 /_build_params
@@ -29,3 +30,4 @@ cover_db/
 MYMETA.*
 
 /OpenSearch-*
+test.pl
