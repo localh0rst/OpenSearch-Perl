@@ -1,7 +1,7 @@
 [![Actions Status](https://github.com/localh0rst/OpenSearch-Perl/actions/workflows/test.yml/badge.svg)](https://github.com/localh0rst/OpenSearch-Perl/actions)
 # NAME
 
-OpenSearch - It's new $module
+`OpenSearch` - A Perl client for OpenSearch (https://opensearch.org/)
 
 # SYNOPSIS
 
@@ -43,7 +43,58 @@ OpenSearch - It's new $module
 
 # DESCRIPTION
 
-OpenSearch is ...
+This module is a Perl client for OpenSearch (https://opensearch.org/).
+It currently only supports a small subset of the OpenSearch API.
+
+# METHODS
+
+## cluster
+
+returns a new OpenSearch::Cluster object
+
+    my $cluster = $opensearch->cluster;
+
+## cluster\_allocation
+
+returns a new OpenSearch::Cluster::Allocation object
+
+    my $cluster = $opensearch->cluster_allocation;
+
+## cluster\_health
+
+returns a new OpenSearch::Cluster::Health object
+
+    my $cluster = $opensearch->cluster_health;
+
+## cluster\_settings
+
+returns a new OpenSearch::Cluster::Settings object
+
+    my $cluster = $opensearch->cluster_settings;
+
+## cluster\_stats
+
+returns a new OpenSearch::Cluster::Stats object
+
+    my $cluster = $opensearch->cluster_stats;
+
+## remote
+
+returns a new OpenSearch::Remote object
+
+    my $remote = $opensearch->remote;
+
+## remote\_info
+
+returns a new OpenSearch::Remote::Info object
+
+    my $remote = $opensearch->remote_info;
+
+## search
+
+returns a new OpenSearch::Search object
+
+    my $search = $opensearch->search;
 
 # LICENSE
 
