@@ -36,6 +36,7 @@ sub BUILD( $self, $args ) {
     secure         => $args->{secure}         // 0,
     allow_insecure => $args->{allow_insecure} // 1,
     pool_count     => $args->{pool_count}     // 1,
+    clear_attrs    => $args->{clear_attrs}    // 0,
   ) );
 }
 
@@ -105,6 +106,40 @@ C<OpenSearch> - A Perl client for OpenSearch (https://opensearch.org/)
 
 This module is a Perl client for OpenSearch (https://opensearch.org/).
 It currently only supports a small subset of the OpenSearch API.
+
+=head1 ATTRIBUTES
+
+=head2 user
+
+The username to use for authentication
+
+=head2 pass
+
+The password to use for authentication
+
+=head2 hosts
+
+An arrayref of hosts to connect to
+
+=head2 secure
+
+Boolean to indicate if the connection should be secure (https)
+
+=head2 allow_insecure
+
+Boolean to indicate if insecure connections are allowed
+
+=head2 pool_count
+
+The number of connections to pool
+
+=head2 clear_attrs
+
+Boolean to indicate if attributes should be cleared after a request.
+By default this is set to false. Usualy all attributes are cached in
+the class instance and will be reused for the next request. Switch
+this to 1 if you want to clear all attributes after a request. Another
+possibility is to create a new instance of the class for each request.
 
 =head1 METHODS
 
