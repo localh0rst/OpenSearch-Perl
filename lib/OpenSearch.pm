@@ -18,7 +18,7 @@ use OpenSearch::Remote::Info;
 # Filter
 use OpenSearch::Filter::Source;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # Base singleton
 has 'base' => (

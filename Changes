@@ -2,6 +2,10 @@ Revision history for Perl extension OpenSearch
 
 {{$NEXT}}
 
+0.03 2024-05-18T05:23:14Z
+
+	Fixxed missing JSON requirement
+
 0.02 2024-05-17T10:40:41Z
 
 	- Updated documentation for the Base OpenSearch class and the OpenSearch::Cluster* Endpoints

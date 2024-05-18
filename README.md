@@ -46,6 +46,40 @@
 This module is a Perl client for OpenSearch (https://opensearch.org/).
 It currently only supports a small subset of the OpenSearch API.
 
+# ATTRIBUTES
+
+## user
+
+The username to use for authentication
+
+## pass
+
+The password to use for authentication
+
+## hosts
+
+An arrayref of hosts to connect to
+
+## secure
+
+Boolean to indicate if the connection should be secure (https)
+
+## allow\_insecure
+
+Boolean to indicate if insecure connections are allowed
+
+## pool\_count
+
+The number of connections to pool
+
+## clear\_attrs
+
+Boolean to indicate if attributes should be cleared after a request.
+By default this is set to false. Usualy all attributes are cached in
+the class instance and will be reused for the next request. Switch
+this to 1 if you want to clear all attributes after a request. Another
+possibility is to create a new instance of the class for each request.
+
 # METHODS
 
 ## cluster
