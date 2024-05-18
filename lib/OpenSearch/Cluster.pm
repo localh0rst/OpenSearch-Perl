@@ -5,7 +5,6 @@ use Moose;
 use feature qw(signatures);
 use Data::Dumper;
 
-#use OpenSearch::MooseTypes;
 use OpenSearch::Cluster::Allocation;
 use OpenSearch::Cluster::Health;
 use OpenSearch::Cluster::Stats;
