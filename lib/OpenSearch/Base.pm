@@ -14,6 +14,7 @@ with 'OpenSearch::Helper';
 
 has 'user'           => ( is => 'rw', isa => 'Str', required => 0 );    # Not really required since we can use Cert-Auth
 has 'pass'           => ( is => 'rw', isa => 'Str', required => 0 );    # Not really required since we can use Cert-Auth
+has 'ca_cert'        => ( is => 'rw', isa => 'Str', required => 0 );    # Dunno if that will work right now...
 has 'client_cert'    => ( is => 'rw', isa => 'Str', required => 0 );    # Dunno if that will work right now...
 has 'client_key'     => ( is => 'rw', isa => 'Str', required => 0 );    # Dunno if that will work right now...
 has 'hosts'          => ( is => 'rw', isa => 'ArrayRef[Str]', required => 1 );
@@ -40,7 +41,7 @@ sub _generate_ua_pool($self) {
     my $ua = Mojo::UserAgent->new->insecure( $self->allow_insecure );
 
     if ( $self->client_cert && $self->client_key ) {
-      $ua->cert( $self->client_cert )->key( $self->client_key );
+      $ua->cert( $self->client_cert )->key( $self->client_key )->ca_cert( $self->ca_cert );
     }
 
     push( @{ $self->ua_pool }, $ua );
