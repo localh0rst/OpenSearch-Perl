@@ -61,7 +61,7 @@ returns a new OpenSearch::Search::Search object.
     query => {
       match_all => {}
     }
-  )->execute;
+  )->get;
 
 =head2 health
 
