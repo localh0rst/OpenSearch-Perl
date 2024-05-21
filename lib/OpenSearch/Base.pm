@@ -81,6 +81,7 @@ sub _prepare_data( $self, $instance, $path = [], $params = {} ) {
   return (
     $self->url( $path, $self->_build_params( $instance, $params, 'url' ) ),
     $self->_build_params( $instance, $params, 'body' ),
+    $self->_build_params( $instance, $params, 'path' ),
   );
 }
 
