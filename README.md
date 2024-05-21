@@ -34,23 +34,22 @@ is to create a new instance of the class for each request.
 
 The preferred way is to create a new class instance for each request:
 
-    my $opensearch = OpenSearch->new(...);
+    my $s = OpenSearch->new(...)->search;
 
     foreach (...) {
-      my $response = $opensearch
+      my $response = $s
         ->search(query => {...})
-        ->execute;
+        ->get;
     }
 
-instead of:
-
     my $opensearch = OpenSearch->new(...);
-    my $search = $opensearch->search;
+    my $search_api = $opensearch->search;
+    my $s = $search_api->search;
 
-    forach my $terms (@terms) {
+    foreach ... (@...) {
       my $response = $search
-        ->query()
-        ->execute;
+        ->query(...)
+        ->get;
     }
 
 The latter is only safe to use if you know that all other attributes are
@@ -123,7 +122,12 @@ returns a new OpenSearch::Search object
 
     my $search = $opensearch->search;
 
-# LICENSE
+## index
+
+returns a new OpenSearch::Index object
+
+    my $search = $opensearch->index;
+  =head1 LICENSE
 
 Copyright (C) localh0rst.
 
