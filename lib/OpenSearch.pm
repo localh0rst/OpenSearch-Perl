@@ -107,6 +107,41 @@ C<OpenSearch> - A Perl client for OpenSearch (https://opensearch.org/)
 This module is a Perl client for OpenSearch (https://opensearch.org/).
 It currently only supports a small subset of the OpenSearch API.
 
+=head1 IMPORTANT
+
+This module is still in development and should not be used in production
+unless you know what you are doing. The API is subject to change.
+
+Keeep in mind that all attributes are cached in the class instance and will
+be reused for the next request. If you want to clear all attributes after
+a request you can set the clear_attrs attribute to 1. Another possibility
+is to create a new instance of the class for each request.
+
+The preferred way is to create a new class instance for each request:
+
+    my $opensearch = OpenSearch->new(...);
+
+    foreach (...) {
+      my $response = $opensearch
+        ->search(query => {...})
+        ->execute;
+    }
+
+instead of:
+
+    my $opensearch = OpenSearch->new(...);
+    my $search = $opensearch->search;
+
+    forach my $terms (@terms) {
+      my $response = $search
+        ->query()
+        ->execute;
+    }
+
+The latter is only safe to use if you know that all other attributes are
+the same for every request. It is okay for situations like if you want to 
+use `search_after` or `scroll`.
+
 =head1 ATTRIBUTES
 
 =head2 user
@@ -140,6 +175,18 @@ By default this is set to false. Usualy all attributes are cached in
 the class instance and will be reused for the next request. Switch
 this to 1 if you want to clear all attributes after a request. Another
 possibility is to create a new instance of the class for each request.
+
+=head2 ca_cert
+
+Path to a CA certificate file [UNTESTED]
+
+=head2 client_cert
+
+Path to a client certificate file [UNTESTED]
+
+=head2 client_key
+
+Path to a client key file [UNTESTED]
 
 =head1 METHODS
 
