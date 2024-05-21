@@ -3,7 +3,6 @@ use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
-use OpenSearch::Scroll;
 use Data::Dumper;
 
 with 'OpenSearch::Parameters::Search';
@@ -45,43 +44,43 @@ sub execute($self) {
   return $res;
 }
 
-sub search_scroll_p($self) {
-  if ( $self->scroll_id ) {
-    $self->base->ua->get_p(
-      $self->base->url( [ '_search', 'scroll' ] ) => json => {
-        scroll    => $self->scroll // '10m',
-        scroll_id => $self->scroll_id,
-
-        # slice => {id => 0, max => 10} These belong only in the initial searech request. not here
-      }
-    )->then( sub($tx) {
-      $self->scroll_id( $tx->result->json->{_scroll_id} ) if $tx->result->json->{_scroll_id};
-      return ( $self->base->response($tx) );
-    } )->catch( sub($error) {
-      die( $error . "\n" );
-    } );
-  } else {
-
-    # If not already in "scroll" mode, use a normal search including scroll
-    $self->search_p;
-  }
-}
-
-sub search_scroll($self) {
-  my ($res);
-  $self->search_scroll_p->then( sub { $res = shift; } )->wait;
-  return $res;
-}
-
-sub scroll_delete_p($self) {
-  return ( OpenSearch::Scroll->new->delete_p( $self->scroll_id ) );
-}
-
-sub scroll_delete($self) {
-  my ($res);
-  my $scroll = OpenSearch::Scroll->new;
-  $scroll->delete_p( $self->scroll_id )->then( sub { $res = shift } )->wait;
-  return ($res);
-}
+#sub search_scroll_p($self) {
+#  if ( $self->scroll_id ) {
+#    $self->base->ua->get_p(
+#      $self->base->url( [ '_search', 'scroll' ] ) => json => {
+#        scroll    => $self->scroll // '10m',
+#        scroll_id => $self->scroll_id,
+#
+#        # slice => {id => 0, max => 10} These belong only in the initial searech request. not here
+#      }
+#    )->then( sub($tx) {
+#      $self->scroll_id( $tx->result->json->{_scroll_id} ) if $tx->result->json->{_scroll_id};
+#      return ( $self->base->response($tx) );
+#    } )->catch( sub($error) {
+#      die( $error . "\n" );
+#    } );
+#  } else {
+#
+#    # If not already in "scroll" mode, use a normal search including scroll
+#    $self->search_p;
+#  }
+#}
+#
+#sub search_scroll($self) {
+#  my ($res);
+#  $self->search_scroll_p->then( sub { $res = shift; } )->wait;
+#  return $res;
+#}
+#
+#sub scroll_delete_p($self) {
+#  return ( OpenSearch::Scroll->new->delete_p( $self->scroll_id ) );
+#}
+#
+#sub scroll_delete($self) {
+#  my ($res);
+#  my $scroll = OpenSearch::Scroll->new;
+#  $scroll->delete_p( $self->scroll_id )->then( sub { $res = shift } )->wait;
+#  return ($res);
+#}
 
 1;
