@@ -17,34 +17,45 @@
       allow_insecure => 1,
     );
 
-    my $s = $self->search(
-      index => 'my_index',
-      query => {
-        bool => {
-          must => [ { range => { '@timestamp' => { gte => 'now-1d' } } } ],
-        }
-      }
-    );
-
-    # Blocking
-    my $response = $s->execute; 
-    # Non Blocking - Returns a Mojo::Promise;
-    my $promise = $s->execute_p->then(...)->catch(...);
-
-    # OR you can do it like this:
-    my $response = $s->search
-      ->index('my_index')
-      ->query({ 
-        bool => { 
-          must => [ { range => { '@timestamp' => { gte => 'now-1d' } } } ] 
-        } 
-      }
-    )->execute;
-
 # DESCRIPTION
 
 This module is a Perl client for OpenSearch (https://opensearch.org/).
 It currently only supports a small subset of the OpenSearch API.
+
+# IMPORTANT
+
+This module is still in development and should not be used in production
+unless you know what you are doing. The API is subject to change.
+
+Keeep in mind that all attributes are cached in the class instance and will
+be reused for the next request. If you want to clear all attributes after
+a request you can set the clear\_attrs attribute to 1. Another possibility
+is to create a new instance of the class for each request.
+
+The preferred way is to create a new class instance for each request:
+
+    my $opensearch = OpenSearch->new(...);
+
+    foreach (...) {
+      my $response = $opensearch
+        ->search(query => {...})
+        ->execute;
+    }
+
+instead of:
+
+    my $opensearch = OpenSearch->new(...);
+    my $search = $opensearch->search;
+
+    forach my $terms (@terms) {
+      my $response = $search
+        ->query()
+        ->execute;
+    }
+
+The latter is only safe to use if you know that all other attributes are
+the same for every request. It is okay for situations like if you want to 
+use \`search\_after\` or \`scroll\`.
 
 # ATTRIBUTES
 
@@ -80,6 +91,18 @@ the class instance and will be reused for the next request. Switch
 this to 1 if you want to clear all attributes after a request. Another
 possibility is to create a new instance of the class for each request.
 
+## ca\_cert
+
+Path to a CA certificate file \[UNTESTED\]
+
+## client\_cert
+
+Path to a client certificate file \[UNTESTED\]
+
+## client\_key
+
+Path to a client key file \[UNTESTED\]
+
 # METHODS
 
 ## cluster
@@ -88,41 +111,11 @@ returns a new OpenSearch::Cluster object
 
     my $cluster = $opensearch->cluster;
 
-## cluster\_allocation
-
-returns a new OpenSearch::Cluster::Allocation object
-
-    my $cluster = $opensearch->cluster_allocation;
-
-## cluster\_health
-
-returns a new OpenSearch::Cluster::Health object
-
-    my $cluster = $opensearch->cluster_health;
-
-## cluster\_settings
-
-returns a new OpenSearch::Cluster::Settings object
-
-    my $cluster = $opensearch->cluster_settings;
-
-## cluster\_stats
-
-returns a new OpenSearch::Cluster::Stats object
-
-    my $cluster = $opensearch->cluster_stats;
-
 ## remote
 
 returns a new OpenSearch::Remote object
 
     my $remote = $opensearch->remote;
-
-## remote\_info
-
-returns a new OpenSearch::Remote::Info object
-
-    my $remote = $opensearch->remote_info;
 
 ## search
 
