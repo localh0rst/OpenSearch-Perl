@@ -20,7 +20,7 @@ with
   "OpenSearch::Parameters::Body::sort",
 
   # Pagination. Not documented in Search API
-  "OpenSearch::Parameters::Body::search_after",
+  "OpenSearch::Parameters::Body::search_after", "OpenSearch::Parameters::Body::scroll_id",
 
   "OpenSearch::Parameters::URL::max_concurrent_shard_requests",
   "OpenSearch::Parameters::URL::stored_fields",
