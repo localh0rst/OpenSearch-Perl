@@ -29,7 +29,8 @@ sub get_p($self) {
       ],
       body => [
         qw/
-          seq_no_primary_term version explain stats from min_score size terminate_after docvalue_fields indices_boost fields query _source timeout size sort search_after scroll_id
+          seq_no_primary_term version explain stats from min_score size terminate_after docvalue_fields indices_boost fields query _source
+          timeout size sort search_after scroll_id
           /
       ]
     }
