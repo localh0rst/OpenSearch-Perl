@@ -40,19 +40,14 @@ sub BUILD( $self, $args ) {
   ) );
 }
 
-#Search
+#Search Endpoint
 sub search { shift; return ( OpenSearch::Search->new(@_) ); }
 
 # Cluster
-sub cluster            { shift; return ( OpenSearch::Cluster->new(@_) ); }
-sub cluster_health     { shift; return ( OpenSearch::Cluster::Health->new(@_) ); }
-sub cluster_stats      { shift; return ( OpenSearch::Cluster::Stats->new(@_) ); }
-sub cluster_allocation { shift; return ( OpenSearch::Cluster::Allocation->new(@_) ); }
-sub cluster_settings   { shift; return ( OpenSearch::Cluster::Settings->new(@_) ); }
+sub cluster { shift; return ( OpenSearch::Cluster->new(@_) ); }
 
 # Remote
-sub remote      { shift; return ( OpenSearch::Remote->new(@_) ); }
-sub remote_info { shift; return ( OpenSearch::Remote::Info->new(@_) ); }
+sub remote { shift; return ( OpenSearch::Remote->new(@_) ); }
 
 1;
 
@@ -77,30 +72,6 @@ C<OpenSearch> - A Perl client for OpenSearch (https://opensearch.org/)
       secure => 0,
       allow_insecure => 1,
     );
-
-    my $s = $self->search(
-      index => 'my_index',
-      query => {
-        bool => {
-          must => [ { range => { '@timestamp' => { gte => 'now-1d' } } } ],
-        }
-      }
-    );
-
-    # Blocking
-    my $response = $s->execute; 
-    # Non Blocking - Returns a Mojo::Promise;
-    my $promise = $s->execute_p->then(...)->catch(...);
-
-    # OR you can do it like this:
-    my $response = $s->search
-      ->index('my_index')
-      ->query({ 
-        bool => { 
-          must => [ { range => { '@timestamp' => { gte => 'now-1d' } } } ] 
-        } 
-      }
-    )->execute;
 
 =head1 DESCRIPTION
 
@@ -196,41 +167,11 @@ returns a new OpenSearch::Cluster object
 
   my $cluster = $opensearch->cluster;
 
-=head2 cluster_allocation
-
-returns a new OpenSearch::Cluster::Allocation object
-
-  my $cluster = $opensearch->cluster_allocation;
-
-=head2 cluster_health
-
-returns a new OpenSearch::Cluster::Health object
-
-  my $cluster = $opensearch->cluster_health;
-
-=head2 cluster_settings
-
-returns a new OpenSearch::Cluster::Settings object
-
-  my $cluster = $opensearch->cluster_settings;
-
-=head2 cluster_stats
-
-returns a new OpenSearch::Cluster::Stats object
-
-  my $cluster = $opensearch->cluster_stats;
-
 =head2 remote
 
 returns a new OpenSearch::Remote object
 
   my $remote = $opensearch->remote;
-
-=head2 remote_info
-
-returns a new OpenSearch::Remote::Info object
-
-  my $remote = $opensearch->remote_info;
 
 =head2 search
 
