@@ -16,7 +16,7 @@ has 'base' => (
   default  => sub { OpenSearch::Base->instance; }
 );
 
-sub execute_p($self) {
+sub get_p($self) {
   my $params = {
     optional => {
       url => [
@@ -38,9 +38,9 @@ sub execute_p($self) {
   return ( $self->base->_get( $self, [ ( $self->index // () ), '_search' ], $params ) );
 }
 
-sub execute($self) {
+sub get($self) {
   my ($res);
-  $self->execute_p->then( sub { $res = shift; } )->wait;
+  $self->get_p->then( sub { $res = shift; } )->wait;
   return $res;
 }
 
