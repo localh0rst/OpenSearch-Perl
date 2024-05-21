@@ -4,7 +4,6 @@ use warnings;
 use Moose;
 use feature qw(signatures);
 use Data::Dumper;
-use OpenSearch::MooseTypes;
 use OpenSearch::Base;
 use OpenSearch::Search;
 use OpenSearch::Cluster;
