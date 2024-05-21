@@ -22,8 +22,8 @@ sub _build_params( $self, $instance, $params, $type = 'url' ) {
       my $enc   = $instance->meta->{attributes}->{$param}->{role_attribute}->{documentation}->{encode_func} // 'as_is';
 
       # I think this was nonsense and can be removed
-      my $merge = $instance->meta->{attributes}->{$param}->{role_attribute}->{documentation}->{merge_hash_instead}
-        // undef;
+      #my $merge = $instance->meta->{attributes}->{$param}->{role_attribute}->{documentation}->{merge_hash_instead}
+      #  // undef;
 
       # Die if required param is missing
       die( "Parameter: " . $param . " is required.\n" ) if !defined($value);
@@ -32,12 +32,18 @@ sub _build_params( $self, $instance, $params, $type = 'url' ) {
       die( "Parameter: " . $param . " is required.\n" )
         if ref($value) eq 'HASH' && !keys( %{$value} );
 
+      # This is here so we dont have to handle the die() on required path
+      # parameters in the calling code.
+      next if ( $type eq 'path' );
+
       my $val = $self->_generate_value( $value, $enc );
-      if ($merge) {
-        $return->{ ( keys( %{$val} ) )[0] } = $val->{ ( keys( %{$val} ) )[0] };
-      } else {
-        $return->{$param} = $val if defined($val);
-      }
+
+      #if ($merge) {
+      #  $return->{ ( keys( %{$val} ) )[0] } = $val->{ ( keys( %{$val} ) )[0] };
+      #} else {
+      $return->{$param} = $val if defined($val);
+
+      #}
 
       $instance->{$param} = undef if $self->clear_attrs;
     }
@@ -51,16 +57,17 @@ sub _build_params( $self, $instance, $params, $type = 'url' ) {
       # The (i named it like this) "query" parameter might have different "top-level"
       # Keys (i.e. query => {...} or bool => {...} etc. This way we just merge first
       # (hope that works) key of the hashref)
-      my $merge = $instance->meta->{attributes}->{$param}->{role_attribute}->{documentation}->{merge_hash_instead}
-        // undef;
+      #my $merge = $instance->meta->{attributes}->{$param}->{role_attribute}->{documentation}->{merge_hash_instead}
+      #  // undef;
 
       my $val = $self->_generate_value( $value, $enc );
 
-      if ($merge) {
-        $return->{ ( keys( %{$val} ) )[0] } = $val->{ ( keys( %{$val} ) )[0] };
-      } else {
-        $return->{$param} = $val if defined($val);
-      }
+      #if ($merge) {
+      #  $return->{ ( keys( %{$val} ) )[0] } = $val->{ ( keys( %{$val} ) )[0] };
+      #} else {
+      $return->{$param} = $val if defined($val);
+
+      #}
 
       $instance->{$param} = undef if $self->clear_attrs;
     }
@@ -71,6 +78,7 @@ sub _build_params( $self, $instance, $params, $type = 'url' ) {
   if ( $self->clear_attrs ) {
     $instance->can('index') ? $instance->{index} = undef : ();
     $instance->can('id')    ? $instance->{id}    = undef : ();
+    $instance->can('alias') ? $instance->{alias} = undef : ();
   }
 
   return ($return);
