@@ -6,13 +6,11 @@ use feature qw(signatures);
 use Data::Dumper;
 use OpenSearch::Base;
 use OpenSearch::Search;
+
+use OpenSearch::Index;
+
 use OpenSearch::Cluster;
-use OpenSearch::Cluster::Health;
-use OpenSearch::Cluster::Stats;
-use OpenSearch::Cluster::Allocation;
-use OpenSearch::Cluster::Settings;
 use OpenSearch::Remote;
-use OpenSearch::Remote::Info;
 
 # Filter
 use OpenSearch::Filter::Source;
@@ -38,6 +36,9 @@ sub BUILD( $self, $args ) {
     clear_attrs    => $args->{clear_attrs}    // 0,
   ) );
 }
+
+# Index API
+sub index { shift; return ( OpenSearch::Index->new(@_) ); }
 
 #Search Endpoint
 sub search { shift; return ( OpenSearch::Search->new(@_) ); }
