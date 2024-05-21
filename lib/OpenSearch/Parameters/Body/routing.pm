@@ -1,18 +1,16 @@
-package OpenSearch::Parameters::URL::timeout;
+package OpenSearch::Parameters::Body::routing;
 use Moose::Role;
-use Moose::Util::TypeConstraints;
-subtype 'Timeout', as 'Str', where { $_ =~ /^[0-9]+[sShHmMdD]/ };
 
-has "timeout" => (
+has "routing" => (
   is            => "rw",
-  isa           => "Timeout",
+  isa           => "Str",
   documentation => {
     encode_func => undef,
     required    => undef,
   }
 );
 
-around "timeout" => sub {
+around "routing" => sub {
   my $orig = shift;
   my $self = shift;
 

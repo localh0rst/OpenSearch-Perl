@@ -1,20 +1,20 @@
-package OpenSearch::Parameters::URL::timeout;
+package OpenSearch::Parameters::Body::filter;
 use Moose::Role;
-use Moose::Util::TypeConstraints;
-subtype 'Timeout', as 'Str', where { $_ =~ /^[0-9]+[sShHmMdD]/ };
 
-has "timeout" => (
+has "filter" => (
   is            => "rw",
-  isa           => "Timeout",
+  isa           => "HashRef",
   documentation => {
     encode_func => undef,
     required    => undef,
   }
 );
 
-around "timeout" => sub {
+around "filter" => sub {
   my $orig = shift;
   my $self = shift;
+
+  die('FILTER NOT YET KNOWN TO ME. SORRY!');
 
   if (@_) {
     $self->$orig(@_);
