@@ -178,6 +178,11 @@ returns a new OpenSearch::Search object
 
   my $search = $opensearch->search;
 
+=head2 index
+
+returns a new OpenSearch::Index object
+
+  my $search = $opensearch->index;
 =head1 LICENSE
 
 Copyright (C) localh0rst.
