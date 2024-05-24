@@ -1,10 +1,10 @@
-package OpenSearch::Search::Search;
+package OpenSearch::Index::Delete;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Search';
+with 'OpenSearch::Parameters::Index::Delete';
 
 has '_base' => (
   is       => 'rw',
@@ -15,7 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_get( $self, [ ( $self->index // () ),, '_search' ] );
+  my $res = $self->_base->_delete( $self, [ $self->index ] );
 }
 
 1;

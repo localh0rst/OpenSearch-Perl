@@ -1,10 +1,10 @@
-package OpenSearch::Search::Search;
+package OpenSearch::Cluster::Stats::Get;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Search';
+with 'OpenSearch::Parameters::Cluster::Stats::Get';
 
 has '_base' => (
   is       => 'rw',
@@ -15,7 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_get( $self, [ ( $self->index // () ),, '_search' ] );
+  my $res = $self->_base->_get( $self, [ '_cluster', 'stats', ( $self->nodes ? ( 'nodes', $self->nodes ) : () ) ] );
 }
 
 1;

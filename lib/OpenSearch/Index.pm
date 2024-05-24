@@ -1,64 +1,66 @@
 package OpenSearch::Index;
 use strict;
 use warnings;
-use Moose;
 use feature qw(signatures);
+use Moose;
 use Data::Dumper;
+use OpenSearch::Index::Aliases;
+use OpenSearch::Index::GetAliases;
+use OpenSearch::Index::ClearCache;
+use OpenSearch::Index::Clone;
+use OpenSearch::Index::Close;
+use OpenSearch::Index::Create;
+use OpenSearch::Index::Mappings;
+use OpenSearch::Index::GetMappings;
 
-use OpenSearch::Index::Alias;
+#use OpenSearch::Index::Dangling;
+use OpenSearch::Index::Delete;
 
-sub alias { shift; return ( OpenSearch::Index::Alias->new(@_) ); }
+#use OpenSearch::Index::Get;
+#use OpenSearch::Index::GetSettings;
+#use OpenSearch::Index::ForceMerge;
+#use OpenSearch::Index::Exists;
+#use OpenSearch::Index::Open;
+#use OpenSearch::Index::Refresh;
+#use OpenSearch::Index::Shrink;
+#use OpenSearch::Index::Split;
+#use OpenSearch::Index::Stats;
+#use OpenSearch::Index::UpdateSettings;
+
+sub create( $self, @params ) {
+  return ( OpenSearch::Index::Create->new(@params)->execute );
+}
+
+sub delete( $self, @params ) {
+  return ( OpenSearch::Index::Delete->new(@params)->execute );
+}
+
+sub aliases( $self, @params ) {
+  return ( OpenSearch::Index::Aliases->new(@params)->execute );
+}
+
+sub get_aliases( $self, @params ) {
+  return ( OpenSearch::Index::GetAliases->new(@params)->execute );
+}
+
+sub clear_cache( $self, @params ) {
+  return ( OpenSearch::Index::ClearCache->new(@params)->execute );
+}
+
+sub clone( $self, @params ) {
+  return ( OpenSearch::Index::Clone->new(@params)->execute );
+}
+
+sub close( $self, @params ) {
+  return ( OpenSearch::Index::Close->new(@params)->execute );
+}
+
+sub mappings( $self, @params ) {
+  return ( OpenSearch::Index::Mappings->new(@params)->execute );
+}
+
+sub get_mappings( $self, @params ) {
+  return ( OpenSearch::Index::GetMappings->new(@params)->execute );
+}
 
 1;
-__END__
-
-=encoding utf-8
-
-=head1 NAME
-
-C<OpenSearch::Index> - OpenSearch Index API
-
-=head1 SYNOPSIS
-
-    use strict;
-    use warnings;
-    use OpenSearch;
-
-    my $opensearch = OpenSearch->new(...);
-
-    my $index_api = $opensearch->index;
-
-=head1 DESCRIPTION
-
-This is the Module for the OpenSearch Index API. The following Endpoints
-are currently supported:
-
-=over 4
-
-=item * alias [L<OpenSearch::Index::Alias>]
-
-=back
-
-=head1 METHODS
-
-=head2 alias
-
-returns a new OpenSearch::Index::Alias object. 
-
-  my $index_api = $opensearch->index;
-  my $res = $index_api->alias(...)->set;
-  my $res = $index_api->alias(...)->get;
-
-=head1 LICENSE
-
-Copyright (C) localh0rst.
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=head1 AUTHOR
-
-localh0rst E<lt>git@fail.ninjaE<gt>
-
-=cut
-
