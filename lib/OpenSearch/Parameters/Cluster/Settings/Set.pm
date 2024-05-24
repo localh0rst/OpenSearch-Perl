@@ -34,7 +34,7 @@ has 'timeout' => (
   }
 );
 
-has 'settings' => (
+has 'persistent' => (
   is          => 'rw',
   isa         => 'HashRef',
   metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
@@ -46,7 +46,18 @@ has 'settings' => (
   }
 );
 
-around [qw/flat_settings cluster_manager_timeout timeout/] => sub {
+has 'transient' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 1,
+    forced_body => 1
+  }
+);
+around [qw/flat_settings cluster_manager_timeout timeout persistent transient/] => sub {
   my $orig = shift;
   my $self = shift;
 
