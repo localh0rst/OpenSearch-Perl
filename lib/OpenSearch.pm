@@ -197,6 +197,48 @@ The path to the client key to use when connecting to the OpenSearch server.
 
 =back
 
+=head1 CAVEATS
+
+I am not affiliated with OpenSearch. This module is not officially supported by OpenSearch.
+If speed is a concern, you may want to consider using a different module (or maybe language).
+Using 'async' while also using 'max_connections' and 'pool_count' will result in better performance.
+
+Using the following options:
+
+  async           => 1,
+  pool_count      => 10,
+  max_connections => 50,
+
+will result in around 1000 requests per second (on my machine). However, using the following options:
+
+  async           => 0,
+  pool_count      => 10,
+  max_connections => 50,
+
+will result in a maximum of around 200 requests per second (on my machine). This was tested using
+
+  $os->document->index();
+
+with a small test-document:
+
+  {
+    test    => 'test',
+    test1   => 'test1',
+    nesting => {
+      test  => 'test',
+      test1 => 'test1',
+      test2 => [ 
+        { 
+          wurst => '123' 
+        }, 
+        { 
+          asd => [ 1, 2, 3, 4 ] 
+        } 
+      ]
+    }
+  }
+
+
 =head1 AUTHOR
 
 C<OpenSearch> was written by Sebastian Grenz, C<< <git at fail.ninja> >>
