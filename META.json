@@ -1,7 +1,7 @@
 {
    "abstract" : "Unofficial Perl client for OpenSearch (https://opensearch.org/)",
    "author" : [
-      "C<OpenSearch> was written by Sebastian Grenz, C<< <git at fail.ninja> >>"
+      "C<OpenSearch>-Perl was written by Sebastian Grenz, C<< <git at fail.ninja> >>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v3.1.23, CPAN::Meta::Converter version 2.150010",
