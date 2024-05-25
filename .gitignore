@@ -32,4 +32,5 @@ MYMETA.*
 /OpenSearch-*
 test.pl
 test_thr.pl
+test-obj.pl
 unused
