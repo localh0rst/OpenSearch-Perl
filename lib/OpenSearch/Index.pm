@@ -6,20 +6,30 @@ use Moose;
 use Data::Dumper;
 use OpenSearch::Index::SetAliases;
 use OpenSearch::Index::GetAliases;
+
 use OpenSearch::Index::ClearCache;
+
 use OpenSearch::Index::Clone;
+
 use OpenSearch::Index::Close;
+
 use OpenSearch::Index::Create;
+
 use OpenSearch::Index::SetMappings;
 use OpenSearch::Index::GetMappings;
 
-use OpenSearch::Index::Dangling;
+use OpenSearch::Index::GetDangling;
+use OpenSearch::Index::ImportDangling;
+use OpenSearch::Index::DeleteDangling;
+
 use OpenSearch::Index::Delete;
 
-#use OpenSearch::Index::Get;
+use OpenSearch::Index::Get;
+
 #use OpenSearch::Index::GetSettings;
 #use OpenSearch::Index::ForceMerge;
-#use OpenSearch::Index::Exists;
+use OpenSearch::Index::Exists;
+
 #use OpenSearch::Index::Open;
 #use OpenSearch::Index::Refresh;
 #use OpenSearch::Index::Shrink;
@@ -65,6 +75,22 @@ sub get_mappings( $self, @params ) {
 
 sub get_dangling( $self, @params ) {
   return ( OpenSearch::Index::GetDangling->new(@params)->execute );
+}
+
+sub import_dangling( $self, @params ) {
+  return ( OpenSearch::Index::ImportDangling->new(@params)->execute );
+}
+
+sub delete_dangling( $self, @params ) {
+  return ( OpenSearch::Index::DeleteDangling->new(@params)->execute );
+}
+
+sub get( $self, @params ) {
+  return ( OpenSearch::Index::Get->new(@params)->execute );
+}
+
+sub exists( $self, @params ) {
+  return ( OpenSearch::Index::Exists->new(@params)->execute );
 }
 
 1;
