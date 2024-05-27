@@ -1,10 +1,10 @@
-package OpenSearch::Cluster::Stats::Get;
+package OpenSearch::Cluster::AllocationExplain;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Cluster::Stats::Get';
+with 'OpenSearch::Parameters::Cluster::AllocationExplain';
 
 has '_base' => (
   is       => 'rw',
@@ -15,7 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_get( $self, [ '_cluster', 'stats', ( $self->nodes ? ( 'nodes', $self->nodes ) : () ) ] );
+  my $res = $self->_base->_get( $self, [ '_cluster', 'allocation', 'explain' ] );
 }
 
 1;

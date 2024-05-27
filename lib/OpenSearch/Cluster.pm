@@ -5,29 +5,30 @@ use Moose;
 use feature qw(signatures);
 use Data::Dumper;
 
-use OpenSearch::Cluster::Settings;
+use OpenSearch::Cluster::GetSettings;
+use OpenSearch::Cluster::UpdateSettings;
 use OpenSearch::Cluster::Health;
 use OpenSearch::Cluster::Stats;
-use OpenSearch::Cluster::Allocation;
+use OpenSearch::Cluster::AllocationExplain;
 
 sub get_settings( $self, @params ) {
-  return ( OpenSearch::Cluster::Settings->new->get(@params) );
+  return ( OpenSearch::Cluster::GetSettings->new(@params)->execute );
 }
 
-sub put_settings( $self, @params ) {
-  return ( OpenSearch::Cluster::Settings->new->set(@params) );
+sub update_settings( $self, @params ) {
+  return ( OpenSearch::Cluster::UpdateSettings->new(@params)->execute );
 }
 
 sub health( $self, @params ) {
-  return ( OpenSearch::Cluster::Health->new->get(@params) );
+  return ( OpenSearch::Cluster::Health->new(@params)->execute );
 }
 
 sub stats( $self, @params ) {
-  return ( OpenSearch::Cluster::Stats->new->get(@params) );
+  return ( OpenSearch::Cluster::Stats->new(@params)->execute );
 }
 
 sub allocation_explain( $self, @params ) {
-  return ( OpenSearch::Cluster::Allocation->new->explain(@params) );
+  return ( OpenSearch::Cluster::AllocationExplain->new(@params)->execute );
 }
 
 1;
@@ -36,21 +37,14 @@ __END__
 
 =head1 NAME
 
-C<OpenSearch::Cluster> - Cluster API
+C<OpenSearch::Cluster> - OpenSearch Cluster API Endpoints
 
 =head1 SYNOPSIS
 
   use OpenSearch;
-  my $os = OpenSearch->new(
-    ...
-    async => 1
-  );
 
+  my $os = OpenSearch->new(...);
   my $cluster = $os->cluster;
-
-  # When async is set, this returns a L<Mojo::Promise> object
-  # Otherwise, it returns a hashref with the JSON response. 
-  my $settings = $cluster->get_settings;
 
   $cluster->put_settings(
     persistent => {
@@ -66,7 +60,17 @@ C<OpenSearch::Cluster> - Cluster API
 
 =head1 DESCRIPTION
 
-This module provides an interface to the OpenSearch Cluster API.
+This module provides an interface to the OpenSearch Cluster API endpoints.
+If i read the documentation correctly, all endpoints are supported. For
+a list of avaialable parameters see: 
+L<https://opensearch.org/docs/latest/api-reference/index-apis/>
+
+  my $os = OpenSearch->new(
+    ...
+    async => 1
+  );
+
+all methods return a L<Mojo::Promise> object.
 
 =head1 METHODS
 

@@ -1,18 +1,7 @@
-package OpenSearch::Parameters::Cluster::Settings::Get;
+package OpenSearch::Parameters::Cluster::UpdateSettings;
 use Moose::Role;
 
 has 'flat_settings' => (
-  is          => 'rw',
-  isa         => 'Bool',
-  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
-  description => {
-    encode_func => 'encode_bool',
-    type        => 'url',
-    required    => 0,
-  }
-);
-
-has 'include_defaults' => (
   is          => 'rw',
   isa         => 'Bool',
   metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
@@ -45,7 +34,30 @@ has 'timeout' => (
   }
 );
 
-around [qw/flat_settings include_defaults cluster_manager_timeout timeout/] => sub {
+has 'persistent' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 1,
+    forced_body => 0
+  }
+);
+
+has 'transient' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 1,
+    forced_body => 0
+  }
+);
+around [qw/flat_settings cluster_manager_timeout timeout persistent transient/] => sub {
   my $orig = shift;
   my $self = shift;
 

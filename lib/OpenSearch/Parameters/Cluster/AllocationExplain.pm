@@ -1,4 +1,4 @@
-package OpenSearch::Parameters::Cluster::Allocation::Explain;
+package OpenSearch::Parameters::Cluster::AllocationExplain;
 use Moose::Role;
 
 has 'current_node' => (

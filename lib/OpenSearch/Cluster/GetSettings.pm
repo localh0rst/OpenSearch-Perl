@@ -1,10 +1,10 @@
-package OpenSearch::Cluster::Settings::Set;
+package OpenSearch::Cluster::GetSettings;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Cluster::Settings::Set';
+with 'OpenSearch::Parameters::Cluster::GetSettings';
 
 has '_base' => (
   is       => 'rw',
@@ -15,7 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_put( $self, [ '_cluster', 'settings' ] );
+  my $res = $self->_base->_get( $self, [ '_cluster', 'settings' ] );
 }
 
 1;

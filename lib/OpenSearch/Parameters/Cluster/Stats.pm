@@ -1,4 +1,4 @@
-package OpenSearch::Parameters::Cluster::Stats::Get;
+package OpenSearch::Parameters::Cluster::Stats;
 use Moose::Role;
 use OpenSearch::Filter::Nodes;
 

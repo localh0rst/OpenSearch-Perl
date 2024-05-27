@@ -1,4 +1,4 @@
-package OpenSearch::Parameters::Cluster::Health::Get;
+package OpenSearch::Parameters::Cluster::Health;
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 
