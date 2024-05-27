@@ -7,7 +7,6 @@ requires 'Net::SSLeay';
 requires 'IO::Socket::SSL';
 requires 'MooseX::Singleton';
 requires 'MooseX::MetaDescription::Meta::Attribute';
-requires 'HTTP::Status';
 requires 'Hash::AsObject';
 #requires 'EV';
 
