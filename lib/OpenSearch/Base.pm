@@ -83,7 +83,6 @@ sub do_request( $self, $method, $url, $body ) {
 
   $promise = $self->ua->$method( $url => ( ref($body) eq 'HASH' ? 'json' : 'body' ) => $body )->then( sub($tx) {
     return ( $self->response($tx) );
-
   } )->catch( sub($error) {
     return ($error);
   } );
