@@ -6,39 +6,26 @@ use Moose;
 use Data::Dumper;
 use OpenSearch::Index::SetAliases;
 use OpenSearch::Index::GetAliases;
-
 use OpenSearch::Index::ClearCache;
-
 use OpenSearch::Index::Clone;
-
 use OpenSearch::Index::Close;
-
 use OpenSearch::Index::Create;
-
 use OpenSearch::Index::SetMappings;
 use OpenSearch::Index::GetMappings;
-
 use OpenSearch::Index::GetDangling;
 use OpenSearch::Index::ImportDangling;
 use OpenSearch::Index::DeleteDangling;
-
 use OpenSearch::Index::Delete;
-
 use OpenSearch::Index::ForceMerge;
 use OpenSearch::Index::Get;
-
-#use OpenSearch::Index::GetSettings;
+use OpenSearch::Index::GetSettings;
 use OpenSearch::Index::Exists;
-
 use OpenSearch::Index::Open;
-
 use OpenSearch::Index::Refresh;
-
 use OpenSearch::Index::Shrink;
-
-#use OpenSearch::Index::Split;
-#use OpenSearch::Index::Stats;
-#use OpenSearch::Index::UpdateSettings;
+use OpenSearch::Index::Split;
+use OpenSearch::Index::Stats;
+use OpenSearch::Index::UpdateSettings;
 
 sub create( $self, @params ) {
   return ( OpenSearch::Index::Create->new(@params)->execute );
@@ -110,6 +97,22 @@ sub refresh( $self, @params ) {
 
 sub shrink( $self, @params ) {
   return ( OpenSearch::Index::Shrink->new(@params)->execute );
+}
+
+sub split( $self, @params ) {
+  return ( OpenSearch::Index::Split->new(@params)->execute );
+}
+
+sub stats( $self, @params ) {
+  return ( OpenSearch::Index::Stats->new(@params)->execute );
+}
+
+sub get_settings( $self, @params ) {
+  return ( OpenSearch::Index::GetSettings->new(@params)->execute );
+}
+
+sub update_settings( $self, @params ) {
+  return ( OpenSearch::Index::UpdateSettings->new(@params)->execute );
 }
 
 1;
