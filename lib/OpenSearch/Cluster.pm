@@ -10,6 +10,9 @@ use OpenSearch::Cluster::UpdateSettings;
 use OpenSearch::Cluster::Health;
 use OpenSearch::Cluster::Stats;
 use OpenSearch::Cluster::AllocationExplain;
+use OpenSearch::Cluster::GetDecommissionAwareness;
+use OpenSearch::Cluster::SetDecommissionAwareness;
+use OpenSearch::Cluster::DelDecommissionAwareness;
 
 sub get_settings( $self, @params ) {
   return ( OpenSearch::Cluster::GetSettings->new(@params)->execute );
@@ -29,6 +32,19 @@ sub stats( $self, @params ) {
 
 sub allocation_explain( $self, @params ) {
   return ( OpenSearch::Cluster::AllocationExplain->new(@params)->execute );
+}
+
+# TODO: Look more into Decommission Endpoints...
+sub get_decommission_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::GetDecommissionAwareness->new(@params)->execute );
+}
+
+sub set_decommission_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::SetDecommissionAwareness->new(@params)->execute );
+}
+
+sub del_decommission_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::DelDecommissionAwareness->new(@params)->execute );
 }
 
 1;
