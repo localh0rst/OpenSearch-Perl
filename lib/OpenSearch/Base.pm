@@ -125,7 +125,6 @@ sub _put( $self, $instance, $path = [] ) {
 
 sub response( $self, $tx ) {
   return ( OpenSearch::Response->new( _response => $tx->result ) );
-
 }
 
 1;
