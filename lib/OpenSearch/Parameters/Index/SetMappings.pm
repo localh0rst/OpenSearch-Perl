@@ -1,4 +1,4 @@
-package OpenSearch::Parameters::Index::Mappings;
+package OpenSearch::Parameters::Index::SetMappings;
 use Moose::Role;
 
 has 'index' => (

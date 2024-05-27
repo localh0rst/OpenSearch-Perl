@@ -1,10 +1,10 @@
-package OpenSearch::Index::Mappings;
+package OpenSearch::Index::SetMappings;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Index::Mappings';
+with 'OpenSearch::Parameters::Index::SetMappings';
 
 has '_base' => (
   is       => 'rw',

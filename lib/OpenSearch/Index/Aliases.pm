@@ -1,10 +1,10 @@
-package OpenSearch::Index::Aliases;
+package OpenSearch::Index::SetAliases;
 use strict;
 use warnings;
 use feature qw(signatures);
 use Moose;
 
-with 'OpenSearch::Parameters::Index::Aliases';
+with 'OpenSearch::Parameters::Index::SetAliases';
 
 has '_base' => (
   is       => 'rw',

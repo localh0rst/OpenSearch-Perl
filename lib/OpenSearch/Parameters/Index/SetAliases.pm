@@ -1,4 +1,4 @@
-package OpenSearch::Parameters::Index::Aliases;
+package OpenSearch::Parameters::Index::SetAliases;
 use Moose::Role;
 
 has 'actions' => (

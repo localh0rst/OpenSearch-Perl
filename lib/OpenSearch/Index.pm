@@ -4,16 +4,16 @@ use warnings;
 use feature qw(signatures);
 use Moose;
 use Data::Dumper;
-use OpenSearch::Index::Aliases;
+use OpenSearch::Index::SetAliases;
 use OpenSearch::Index::GetAliases;
 use OpenSearch::Index::ClearCache;
 use OpenSearch::Index::Clone;
 use OpenSearch::Index::Close;
 use OpenSearch::Index::Create;
-use OpenSearch::Index::Mappings;
+use OpenSearch::Index::SetMappings;
 use OpenSearch::Index::GetMappings;
 
-#use OpenSearch::Index::Dangling;
+use OpenSearch::Index::Dangling;
 use OpenSearch::Index::Delete;
 
 #use OpenSearch::Index::Get;
@@ -36,7 +36,7 @@ sub delete( $self, @params ) {
 }
 
 sub aliases( $self, @params ) {
-  return ( OpenSearch::Index::Aliases->new(@params)->execute );
+  return ( OpenSearch::Index::SetAliases->new(@params)->execute );
 }
 
 sub get_aliases( $self, @params ) {
@@ -55,12 +55,16 @@ sub close( $self, @params ) {
   return ( OpenSearch::Index::Close->new(@params)->execute );
 }
 
-sub mappings( $self, @params ) {
-  return ( OpenSearch::Index::Mappings->new(@params)->execute );
+sub set_mappings( $self, @params ) {
+  return ( OpenSearch::Index::SetMappings->new(@params)->execute );
 }
 
 sub get_mappings( $self, @params ) {
   return ( OpenSearch::Index::GetMappings->new(@params)->execute );
+}
+
+sub get_dangling( $self, @params ) {
+  return ( OpenSearch::Index::GetDangling->new(@params)->execute );
 }
 
 1;
