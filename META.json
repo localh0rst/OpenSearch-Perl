@@ -43,6 +43,7 @@
       "runtime" : {
          "requires" : {
             "Data::Format::Pretty::JSON" : "0",
+            "Hash::AsObject" : "0",
             "IO::Socket::SSL" : "0",
             "JSON::XS" : "0",
             "Mojolicious" : "0",
