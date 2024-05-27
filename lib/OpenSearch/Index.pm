@@ -24,15 +24,18 @@ use OpenSearch::Index::DeleteDangling;
 
 use OpenSearch::Index::Delete;
 
+use OpenSearch::Index::ForceMerge;
 use OpenSearch::Index::Get;
 
 #use OpenSearch::Index::GetSettings;
-#use OpenSearch::Index::ForceMerge;
 use OpenSearch::Index::Exists;
 
-#use OpenSearch::Index::Open;
-#use OpenSearch::Index::Refresh;
-#use OpenSearch::Index::Shrink;
+use OpenSearch::Index::Open;
+
+use OpenSearch::Index::Refresh;
+
+use OpenSearch::Index::Shrink;
+
 #use OpenSearch::Index::Split;
 #use OpenSearch::Index::Stats;
 #use OpenSearch::Index::UpdateSettings;
@@ -91,6 +94,22 @@ sub get( $self, @params ) {
 
 sub exists( $self, @params ) {
   return ( OpenSearch::Index::Exists->new(@params)->execute );
+}
+
+sub force_merge( $self, @params ) {
+  return ( OpenSearch::Index::ForceMerge->new(@params)->execute );
+}
+
+sub open( $self, @params ) {
+  return ( OpenSearch::Index::Open->new(@params)->execute );
+}
+
+sub refresh( $self, @params ) {
+  return ( OpenSearch::Index::Refresh->new(@params)->execute );
+}
+
+sub shrink( $self, @params ) {
+  return ( OpenSearch::Index::Shrink->new(@params)->execute );
 }
 
 1;
