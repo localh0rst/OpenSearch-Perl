@@ -168,4 +168,4 @@ with a small test-document:
 
 # AUTHOR
 
-`OpenSearch`-Perl was written by Sebastian Grenz, `<git at fail.ninja>`
+`OpenSearch` Perl Module was written by Sebastian Grenz, `<git at fail.ninja>`
