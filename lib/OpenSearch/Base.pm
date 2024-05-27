@@ -7,6 +7,7 @@ use MooseX::Singleton;
 use Mojo::UserAgent;
 use Mojo::URL;
 use Data::Dumper;
+use OpenSearch::Response;
 
 with 'OpenSearch::Helper';
 
@@ -122,6 +123,9 @@ sub _put( $self, $instance, $path = [] ) {
   return $self->_http_method( 'put_p', $instance, $path );
 }
 
-sub response( $self, $tx ) { return ( $tx->result->json ); }
+sub response( $self, $tx ) {
+  return ( OpenSearch::Response->new( _response => $tx->result ) );
+
+}
 
 1;
