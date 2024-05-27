@@ -9,9 +9,10 @@ use Carp qw/croak/;
 $Carp::Verbose = 1;
 
 my $functions = {
-  as_is       => sub { my $value = shift; return ($value); },
-  encode_json => sub { my $value = shift; return ( encode_json($value) ); },
-  encode_bool => sub { my $value = shift; return ( defined($value) ? ( $value ? 'true' : 'false' ) : $value ); },
+  as_is        => sub { my $value = shift; return ($value); },
+  encode_json  => sub { my $value = shift; return ( encode_json($value) ); },
+  encode_bool  => sub { my $value = shift; return ( defined($value) ? ( $value ? 'true' : 'false' ) : $value ); },
+  concat_comma => sub { my $value = shift; return ( join( ',', @{$value} ) ); },
 };
 
 sub _generate_params( $self, $instance ) {
