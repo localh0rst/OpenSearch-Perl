@@ -241,5 +241,5 @@ with a small test-document:
 
 =head1 AUTHOR
 
-C<OpenSearch>-Perl was written by Sebastian Grenz, C<< <git at fail.ninja> >>
+C<OpenSearch> Perl Module was written by Sebastian Grenz, C<< <git at fail.ninja> >>
 
