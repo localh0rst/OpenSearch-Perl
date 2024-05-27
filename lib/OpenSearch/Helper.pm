@@ -6,6 +6,7 @@ use Moose::Role;
 use JSON::XS;
 use Data::Dumper;
 use Carp qw/croak/;
+$Carp::Verbose = 1;
 
 my $functions = {
   as_is       => sub { my $value = shift; return ($value); },
@@ -35,7 +36,9 @@ sub _generate_params( $self, $instance ) {
     next if ( $forced && ( $type eq 'body' ) );
 
     if ($req) {
-      croak( "Parameter: " . $param . " is required.\n" )
+      my $caller = ( caller(4) )[3];
+
+      croak( "Parameter: '" . $param . "' is required for " . $caller . ":\n\n" )
         if ( !defined($value)
         || ( ref($value) eq 'ARRAY' && !scalar( @{$value} ) )
         || ( ref($value) eq 'HASH'  && !keys( %{$value} ) ) );
