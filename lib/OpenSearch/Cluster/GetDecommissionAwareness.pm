@@ -15,8 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res =
-    $self->_base->_get( $self, [ '_cluster', 'decommission', 'awareness', $self->awareness_attribute, '_status' ] );
+  my $res = $self->_base->_get( $self, [ '_cluster', 'decommission', 'awareness', $self->attribute, '_status' ] );
 }
 
 1;
