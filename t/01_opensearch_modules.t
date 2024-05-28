@@ -42,7 +42,7 @@ isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
 isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
 
 # Switch to async
-$os->_base->async(1);
+$os->base->async(1);
 isa_ok $cluster_api->health, 'Mojo::Promise', 'Async returns Mojo::Promise object';
 
 done_testing;
