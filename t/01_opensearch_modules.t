@@ -25,25 +25,11 @@ my $os = OpenSearch->new(
   max_connections => 50,
 );
 
-my $os_async = OpenSearch->new(
-  user            => $user,
-  pass            => $pass,
-  hosts           => [$host],
-  secure          => 1,
-  allow_insecure  => 1,
-  async           => 0,
-  pool_count      => 10,
-  max_connections => 50,
-);
-
 my $index_api   = $os->index;
 my $search_api  = $os->search;
 my $doc_api     = $os->document;
 my $cluster_api = $os->cluster;
 my $remote_api  = $os->remote;
-
-# Just for async tests
-my $cluster_api_async = $os_async->cluster;
 
 # Test the objects
 isa_ok $os,          'OpenSearch',           'OpenSearch object created';
@@ -53,8 +39,11 @@ isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
 isa_ok $cluster_api, 'OpenSearch::Cluster',  'Cluster object created';
 isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
 
-isa_ok $cluster_api->health,       'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
-isa_ok $cluster_api_async->health, 'Mojo::Promise',        'Async returns Mojo::Promise object';
+isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
+
+# Switch to async
+$os->async(1);
+isa_ok $cluster_api->health, 'Mojo::Promise', 'Async returns Mojo::Promise object';
 
 done_testing;
 
