@@ -26,7 +26,7 @@ sub _generate_params( $self, $instance ) {
     # TODO: This might conflice with attributes starting with _.
     #       ie. _source, _source_includes, _source_excludes
     #       Since these are optional we dont care about them for now.
-    next if ( $param =~ m/^_/ );
+    next if ( $param =~ m/^_base/ );
     my $desc = $instance->meta->{attributes}->{$param}->description;
     my $enc  = $desc->{encode_func} // 'as_is';
     my $req  = $desc->{required};
