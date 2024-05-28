@@ -93,8 +93,7 @@ C<OpenSearch::Cluster> - OpenSearch Cluster API Endpoints
 
 This module provides an interface to the OpenSearch Cluster API endpoints.
 If i read the documentation correctly, all endpoints are supported. For
-a list of avaialable parameters see: 
-L<https://opensearch.org/docs/latest/api-reference/index-apis/>
+a list of avaialable parameters see the official documentation.
 
   my $os = OpenSearch->new(
     ...
@@ -132,6 +131,30 @@ all methods return a L<Mojo::Promise> object.
 =head2 allocation_explain
 
   $cluster->allocation_explain(...);
+
+=head2 get_decommission_awareness [UNTESTED]
+
+  $cluster->get_decommission_awareness(...);
+
+=head2 set_decommission_awareness [UNTESTED]
+
+  $cluster->set_decommission_awareness(...);
+
+=head2 del_decommission_awareness [UNTESTED]
+
+  $cluster->del_decommission_awareness(...);
+
+=head2 get_routing_awareness [UNTESTED]
+
+  $cluster->get_routing_awareness(...);
+
+=head2 del_routing_awareness [UNTESTED]
+
+  $cluster->del_routing_awareness(...);
+
+=head2 set_routing_awareness [UNTESTED]
+
+  $cluster->set_routing_awareness(...);
 
 =head1 AUTHOR
 
