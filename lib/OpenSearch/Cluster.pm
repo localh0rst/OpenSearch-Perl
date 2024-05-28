@@ -13,6 +13,9 @@ use OpenSearch::Cluster::AllocationExplain;
 use OpenSearch::Cluster::GetDecommissionAwareness;
 use OpenSearch::Cluster::SetDecommissionAwareness;
 use OpenSearch::Cluster::DelDecommissionAwareness;
+use OpenSearch::Cluster::GetRoutingAwareness;
+use OpenSearch::Cluster::DelRoutingAwareness;
+use OpenSearch::Cluster::SetRoutingAwareness;
 
 sub get_settings( $self, @params ) {
   return ( OpenSearch::Cluster::GetSettings->new(@params)->execute );
@@ -45,6 +48,18 @@ sub set_decommission_awareness( $self, @params ) {
 
 sub del_decommission_awareness( $self, @params ) {
   return ( OpenSearch::Cluster::DelDecommissionAwareness->new(@params)->execute );
+}
+
+sub get_routing_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::GetRoutingAwareness->new(@params)->execute );
+}
+
+sub del_routing_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::DelRoutingAwareness->new(@params)->execute );
+}
+
+sub set_routing_awareness( $self, @params ) {
+  return ( OpenSearch::Cluster::SetRoutingAwareness->new(@params)->execute );
 }
 
 1;
