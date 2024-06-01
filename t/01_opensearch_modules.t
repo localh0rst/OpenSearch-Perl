@@ -37,9 +37,9 @@ isa_ok $os,         'OpenSearch',         'OpenSearch object created';
 isa_ok $index_api,  'OpenSearch::Index',  'Index object created';
 isa_ok $search_api, 'OpenSearch::Search', 'Search object created';
 
-#isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
-isa_ok $cluster_api, 'OpenSearch::Cluster', 'Cluster object created';
-isa_ok $remote_api,  'OpenSearch::Remote',  'Remote object created';
+isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
+isa_ok $cluster_api, 'OpenSearch::Cluster',  'Cluster object created';
+isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
 
 isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
 
