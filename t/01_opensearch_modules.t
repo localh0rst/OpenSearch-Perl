@@ -28,7 +28,7 @@ my $os = OpenSearch->new(
 my $index_api  = $os->index;
 my $search_api = $os->search;
 
-#my $doc_api     = $os->document;
+my $doc_api     = $os->document;
 my $cluster_api = $os->cluster;
 my $remote_api  = $os->remote;
 
