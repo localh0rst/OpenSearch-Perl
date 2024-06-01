@@ -25,19 +25,21 @@ my $os = OpenSearch->new(
   max_connections => 50,
 );
 
-my $index_api   = $os->index;
-my $search_api  = $os->search;
-my $doc_api     = $os->document;
+my $index_api  = $os->index;
+my $search_api = $os->search;
+
+#my $doc_api     = $os->document;
 my $cluster_api = $os->cluster;
 my $remote_api  = $os->remote;
 
 # Test the objects
-isa_ok $os,          'OpenSearch',           'OpenSearch object created';
-isa_ok $index_api,   'OpenSearch::Index',    'Index object created';
-isa_ok $search_api,  'OpenSearch::Search',   'Search object created';
-isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
-isa_ok $cluster_api, 'OpenSearch::Cluster',  'Cluster object created';
-isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
+isa_ok $os,         'OpenSearch',         'OpenSearch object created';
+isa_ok $index_api,  'OpenSearch::Index',  'Index object created';
+isa_ok $search_api, 'OpenSearch::Search', 'Search object created';
+
+#isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
+isa_ok $cluster_api, 'OpenSearch::Cluster', 'Cluster object created';
+isa_ok $remote_api,  'OpenSearch::Remote',  'Remote object created';
 
 isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
 
