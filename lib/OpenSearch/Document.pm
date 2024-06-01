@@ -6,6 +6,7 @@ use Moose;
 use Data::Dumper;
 use OpenSearch::Document::Index;
 use OpenSearch::Document::Bulk;
+use OpenSearch::Document::Get;
 
 sub index( $self, @params ) {
   return ( OpenSearch::Document::Index->new(@params)->execute );
@@ -13,6 +14,10 @@ sub index( $self, @params ) {
 
 sub bulk( $self, @params ) {
   return ( OpenSearch::Document::Bulk->new(@params)->execute );
+}
+
+sub get( $self, @params ) {
+  return ( OpenSearch::Document::Get->new(@params)->execute );
 }
 
 1;
