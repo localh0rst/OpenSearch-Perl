@@ -16,7 +16,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_get( $self, [ ( $self->index // () ), '_stats', ( $self->metrics // () ) ] );
+  my $res = $self->_base->_get( $self, [ ( $self->index // () ), '_stats', ( $self->metric // () ) ] );
 }
 
 1;
