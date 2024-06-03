@@ -44,8 +44,15 @@ isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
 isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
 
 # Switch to async
-#$os->base->async(1);
-#isa_ok $cluster_api->health, 'Mojo::Promise', 'Async returns Mojo::Promise object';
+$os->base->async(1);
+my $promise = $cluster_api->health;
+
+isa_ok $promise, 'Mojo::Promise', 'Async returns Mojo::Promise object';
+
+$promise->then( sub {
+  my $res = shift;
+  isa_ok $res, 'OpenSearch::Response', 'Async returns OpenSearch::Response object';
+} )->wait;
 
 done_testing;
 
