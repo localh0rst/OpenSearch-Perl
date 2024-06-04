@@ -73,7 +73,7 @@
          "web" : "https://github.com/localh0rst/OpenSearch-Perl"
       }
    },
-   "version" : "0.91",
+   "version" : "0.92",
    "x_contributors" : [
       "localh0rst <git@fail.ninja>",
       "localh0rst <localh0rst@users.noreply.github.com>"

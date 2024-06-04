@@ -13,7 +13,7 @@ use OpenSearch::Search;
 use OpenSearch::Index;
 use OpenSearch::Document;
 
-our $VERSION = '0.91';
+our $VERSION = '0.92';
 
 has 'base' => (
   is      => 'rw',
