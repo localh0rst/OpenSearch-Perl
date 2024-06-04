@@ -27,35 +27,125 @@ my $os = OpenSearch->new(
 
 my $index_api = $os->index;
 
-my $idx_name = 'os-perl-test-index';
+my $idx_name = 'os-perl-test-index-' . time;
 
-# create()
+# exists()
+my $res = $index_api->exists( index => $idx_name );
+is $res->code, 404, 'Create index returns 404';
 
-my $res = $index_api->create( index => $idx_name );
-
+# Create Index
+$res = $index_api->create(
+  index    => $idx_name,
+  settings => {
+    'number_of_shards' => 2,
+  }
+);
 is $res->code, 200, 'Create index returns 200';
 
-# Test the objects
-#isa_ok $os,         'OpenSearch',         'OpenSearch object created';
-#isa_ok $index_api,  'OpenSearch::Index',  'Index object created';
-#isa_ok $search_api, 'OpenSearch::Search', 'Search object created';
-#
-#isa_ok $doc_api,     'OpenSearch::Document', 'Document object created';
-#isa_ok $cluster_api, 'OpenSearch::Cluster',  'Cluster object created';
-#isa_ok $remote_api,  'OpenSearch::Remote',   'Remote object created';
-#
-#isa_ok $cluster_api->health, 'OpenSearch::Response', 'Sync returns OpenSearch::Response object';
-#
-## Switch to async
-#$os->base->async(1);
-#my $promise = $cluster_api->health;
-#
-#isa_ok $promise, 'Mojo::Promise', 'Async returns Mojo::Promise object';
-#
-#$promise->then( sub {
-#  my $res = shift;
-#  isa_ok $res, 'OpenSearch::Response', 'Async returns OpenSearch::Response object';
-#} )->wait;
+# exists()
+$res = $index_api->exists( index => $idx_name );
+is $res->code, 200, 'Create index returns 200';
+
+# clear_cache()
+$res = $index_api->clear_cache( index => $idx_name );
+is $res->code,                          200, 'Clear cache returns 200';
+is $res->data->{_shards}->{successful}, 2,   'Clear cache returns correct data';
+
+# set_aliases()
+$res = $index_api->set_aliases(
+  actions => [ {
+    add => {
+      index => $idx_name,
+      alias => $idx_name . '-alias'
+    }
+  } ]
+);
+is $res->code, 200, 'Set aliases returns 200';
+
+# get_aliases()
+$res = $index_api->get_aliases();
+is $res->code,                                                             200, 'Get aliases returns 200';
+is exists( $res->data->{$idx_name}->{aliases}->{ $idx_name . '-alias' } ), 1,   'Get aliases returns correct data';
+
+# update_mappings()
+$res = $index_api->set_mappings(
+  index      => $idx_name,
+  properties => {
+    title => {
+      type => 'text'
+    }
+  }
+);
+is $res->code,                 200, 'Update mappings returns 200';
+is $res->data->{acknowledged}, 1,   'Update mappings returns correct data';
+
+# get_mappings()
+$res = $index_api->get_mappings( index => $idx_name );
+is $res->code,                                                         200,    'Get mappings returns 200';
+is $res->data->{$idx_name}->{mappings}->{properties}->{title}->{type}, 'text', 'Get mappings returns correct data';
+
+# get()
+$res = $index_api->get( index => $idx_name );
+is $res->code,                        200, 'Get index returns 200';
+is exists( $res->data->{$idx_name} ), 1,   'Get index returns correct data';
+
+# update_settings()
+$res = $index_api->update_settings(
+  index    => $idx_name,
+  settings => {
+    'index.blocks.write' => 'true'
+  }
+);
+is $res->code,                 200, 'Update settings returns 200';
+is $res->data->{acknowledged}, 1,   'Update settings returns correct data';
+
+# get_settings()
+$res = $index_api->get_settings( index => $idx_name, flat_settings => 1 );
+is $res->code,                                                            200, 'Get settings returns 200';
+is exists( $res->data->{$idx_name}->{settings}->{'index.blocks.write'} ), 1,   'Get settings returns correct data';
+
+# clone()
+$res = $index_api->clone(
+  index    => $idx_name,
+  target   => $idx_name . '-clone',
+  settings => {
+    'index.number_of_shards' => 2
+  }
+);
+is $res->code,                 200, 'Clone index returns 200';
+is $res->data->{acknowledged}, 1,   'Clone index returns correct data';
+
+# stats()
+$res = $index_api->stats( index => $idx_name );
+is $res->code, 200, 'Stats returns 200';
+
+# close()
+$res = $index_api->close( index => $idx_name );
+is $res->code, 200, 'Close index returns 200';
+
+# open()
+$res = $index_api->open( index => $idx_name );
+is $res->code, 200, 'Open index returns 200';
+
+# refresh()
+$res = $index_api->refresh( index => $idx_name );
+is $res->code, 200, 'Refresh index returns 200';
+
+# shrink()
+$res = $index_api->shrink(
+  index  => $idx_name . '-clone',
+  target => $idx_name . '-shrink',
+);
+is $res->code,                 200, 'Shrink index returns 200';
+is $res->data->{acknowledged}, 1,   'Shrink index returns correct data';
+
+# delete()
+$res = $index_api->delete( index => $idx_name );
+is $res->code, 200, 'Delete index returns 200';
+
+# Delete clone and shrink
+$res = $index_api->delete( index => $idx_name . '-clone' );
+$res = $index_api->delete( index => $idx_name . '-shrink' );
 
 done_testing;
 
