@@ -2,13 +2,13 @@ package OpenSearch::Base;
 use strict;
 use warnings;
 use Moose;
-use feature qw(signatures say);
-no warnings qw(experimental::signatures);
 use MooseX::Singleton;
 use Mojo::UserAgent;
 use Mojo::URL;
 use Data::Dumper;
 use OpenSearch::Response;
+use feature qw(signatures say);
+no warnings qw(experimental::signatures);
 
 with 'OpenSearch::Helper';
 

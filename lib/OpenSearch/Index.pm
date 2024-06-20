@@ -1,8 +1,6 @@
 package OpenSearch::Index;
 use strict;
 use warnings;
-use feature qw(signatures);
-no warnings qw(experimental::signatures);
 use Moose;
 use Data::Dumper;
 use OpenSearch::Index::SetAliases;
@@ -27,6 +25,8 @@ use OpenSearch::Index::Shrink;
 use OpenSearch::Index::Split;
 use OpenSearch::Index::Stats;
 use OpenSearch::Index::UpdateSettings;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
 sub create( $self, @params ) {
   return ( OpenSearch::Index::Create->new(@params)->execute );

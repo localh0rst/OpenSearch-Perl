@@ -2,9 +2,9 @@ package OpenSearch::Filter::Nodes;
 use strict;
 use warnings;
 use Moose::Util::TypeConstraints;
+use Moose;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
-use Moose;
 
 subtype 'node_id',   as 'Str', where { $_ =~ /^[a-zA-Z0-9_]+$/ };
 subtype 'node_name', as 'Str', where { $_ =~ /^[a-zA-Z0-9_\-\.]+$/ };    # Dont actually know how it may look like?

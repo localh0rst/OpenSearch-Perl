@@ -2,8 +2,6 @@ package OpenSearch::Cluster;
 use strict;
 use warnings;
 use Moose;
-use feature qw(signatures);
-no warnings qw(experimental::signatures);
 use Data::Dumper;
 
 use OpenSearch::Cluster::GetSettings;
@@ -17,6 +15,8 @@ use OpenSearch::Cluster::DelDecommissionAwareness;
 use OpenSearch::Cluster::GetRoutingAwareness;
 use OpenSearch::Cluster::DelRoutingAwareness;
 use OpenSearch::Cluster::SetRoutingAwareness;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
 sub get_settings( $self, @params ) {
   return ( OpenSearch::Cluster::GetSettings->new(@params)->execute );
