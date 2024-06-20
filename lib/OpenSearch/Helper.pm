@@ -1,12 +1,13 @@
 package OpenSearch::Helper;
 use strict;
 use warnings;
-use feature qw(signatures);
-no warnings qw(experimental::signatures);
 use Moose::Role;
 use JSON::XS;
 use Data::Dumper;
 use Carp qw/croak/;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
+
 $Carp::Verbose = 1;
 
 my $functions = {
