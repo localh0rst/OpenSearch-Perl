@@ -567,6 +567,17 @@ has 'scroll' => (
   }
 );
 
+has 'highlight' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 0,
+  }
+);
+
 around [
   qw/
     index sort version timeout terminate_after stats _source size seq_no_primary_term
@@ -576,7 +587,7 @@ around [
     routing track_total_hits cancel_after_time_interval _source_includes pre_filter_shard_size
     suggest_field preference suggest_size default_operator suggest_mode allow_partial_search_results
     search_type expand_wildcards typed_keys ignore_unavailable df batched_reduce_size analyzer
-    _source_excludes track_scores lenient ccs_minimize_roundtrips scroll
+    _source_excludes track_scores lenient ccs_minimize_roundtrips scroll highlight
     /
 ] => sub {
   my $orig = shift;
