@@ -567,6 +567,17 @@ has 'scroll' => (
   }
 );
 
+has 'highlight' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 0,
+  }
+);
+
 around [
   qw/
     index sort version timeout terminate_after stats _source size seq_no_primary_term
