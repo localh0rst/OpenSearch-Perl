@@ -325,9 +325,10 @@ has 'routing' => (
   }
 );
 
+# See https://github.com/localh0rst/OpenSearch-Perl/issues/8
 has 'track_total_hits' => (
   is          => 'rw',
-  isa         => 'Int',
+  isa         => 'Str',
   metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
   description => {
     encode_func => 'as_is',
