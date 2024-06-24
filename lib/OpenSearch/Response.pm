@@ -21,7 +21,7 @@ sub BUILD( $self, @rest ) {
   $self->data( $self->_response->json );
 
   if ( !$self->success && ( $self->data && $self->data->{error} ) ) {
-    $self->error( Hash::AsObject->new( $self->data->{error} ) );
+    $self->error( $self->data->{error} );
   }
 
 }
