@@ -1,9 +1,10 @@
 package OpenSearch::Filter::Source;
 use strict;
 use warnings;
-use feature qw(signatures);
 use Moose;
 use Data::Dumper;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
 has 'includes' => ( is => 'rw', isa => 'ArrayRef', default => sub { []; } );
 has 'excludes' => ( is => 'rw', isa => 'ArrayRef', default => sub { []; } );

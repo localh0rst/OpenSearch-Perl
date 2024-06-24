@@ -1,10 +1,11 @@
 package OpenSearch::Search::Search;
 use strict;
 use warnings;
-use feature qw(signatures);
 use Moose;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
-with 'OpenSearch::Parameters::Search';
+with 'OpenSearch::Parameters::Search::Search';
 
 has '_base' => (
   is       => 'rw',

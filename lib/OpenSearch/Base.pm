@@ -2,11 +2,13 @@ package OpenSearch::Base;
 use strict;
 use warnings;
 use Moose;
-use feature qw(signatures say);
 use MooseX::Singleton;
 use Mojo::UserAgent;
 use Mojo::URL;
 use Data::Dumper;
+use OpenSearch::Response;
+use feature qw(signatures say);
+no warnings qw(experimental::signatures);
 
 with 'OpenSearch::Helper';
 
@@ -80,12 +82,14 @@ sub _http_method( $self, $method, $instance, $path = [] ) {
 sub do_request( $self, $method, $url, $body ) {
   my ( $promise, $res );
 
-  $promise = $self->ua->$method( $url => ( ref($body) eq 'HASH' ? 'json' : 'body' ) => $body )->then( sub($tx) {
+  $promise =
+    $self->ua->$method(
+    $url => ( ref($body) eq 'HASH' ? 'json' : ( { 'Content-Type' => 'application/json' } ) ) => $body )
+    ->then( sub($tx) {
     return ( $self->response($tx) );
-
-  } )->catch( sub($error) {
+    } )->catch( sub($error) {
     return ($error);
-  } );
+    } );
 
   return ($promise) if $self->async;
 
@@ -122,6 +126,8 @@ sub _put( $self, $instance, $path = [] ) {
   return $self->_http_method( 'put_p', $instance, $path );
 }
 
-sub response( $self, $tx ) { return ( $tx->result->json ); }
+sub response( $self, $tx ) {
+  return ( OpenSearch::Response->new( _response => $tx->result ) );
+}
 
 1;

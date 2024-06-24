@@ -23,6 +23,28 @@ has 'target' => (
   }
 );
 
+has 'settings' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 0,
+  }
+);
+
+has 'aliases' => (
+  is          => 'rw',
+  isa         => 'HashRef',
+  metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
+  description => {
+    encode_func => 'as_is',
+    type        => 'body',
+    required    => 0,
+  }
+);
+
 has 'wait_for_active_shards' => (
   is          => 'rw',
   isa         => 'Str',
@@ -67,7 +89,7 @@ has 'wait_for_completion' => (
   }
 );
 
-has 'task_execution_time' => (
+has 'task_execution_timeout' => (
   is          => 'rw',
   isa         => 'Str',
   metaclass   => 'MooseX::MetaDescription::Meta::Attribute',
@@ -79,8 +101,8 @@ has 'task_execution_time' => (
 );
 
 around [
-  qw/index target wait_for_active_shards cluster_manager_timeout timeout wait_for_completion task_execution_time/] =>
-  sub {
+  qw/index target settings aliases wait_for_active_shards cluster_manager_timeout timeout wait_for_completion task_execution_timeout/
+] => sub {
   my $orig = shift;
   my $self = shift;
 
@@ -89,6 +111,6 @@ around [
     return ($self);
   }
   return ( $self->$orig );
-  };
+};
 
 1;

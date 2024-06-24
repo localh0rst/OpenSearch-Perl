@@ -1,12 +1,12 @@
 {
-   "abstract" : "A Perl client for OpenSearch (https://opensearch.org/)",
+   "abstract" : "Unofficial Perl client for OpenSearch (https://opensearch.org/)",
    "author" : [
-      "localh0rst <git@fail.ninja>"
+      "C<OpenSearch> Perl Module was written by Sebastian Grenz, C<< <git at fail.ninja> >>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v3.1.23, CPAN::Meta::Converter version 2.150010",
    "license" : [
-      "perl_5"
+      "unknown"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -47,6 +47,7 @@
             "JSON::XS" : "0",
             "Mojolicious" : "0",
             "Moose" : "0",
+            "MooseX::MetaDescription::Meta::Attribute" : "0",
             "MooseX::Singleton" : "0",
             "Net::SSLeay" : "0",
             "perl" : "5.008001"
@@ -71,7 +72,12 @@
          "web" : "https://github.com/localh0rst/OpenSearch-Perl"
       }
    },
-   "version" : "0.03",
+   "version" : "0.92",
+   "x_contributors" : [
+      "Nicolas Franck <nicolas.franck@ugent.be>",
+      "localh0rst <git@fail.ninja>",
+      "localh0rst <localh0rst@users.noreply.github.com>"
+   ],
    "x_serialization_backend" : "JSON::PP version 4.16",
    "x_static_install" : 1
 }

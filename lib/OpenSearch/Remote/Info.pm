@@ -1,8 +1,9 @@
 package OpenSearch::Remote::Info;
 use strict;
 use warnings;
-use feature qw(signatures);
 use Moose;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
 has '_base' => (
   is       => 'rw',

@@ -1,16 +1,28 @@
 package OpenSearch::Helper;
 use strict;
 use warnings;
-use feature qw(signatures);
 use Moose::Role;
 use JSON::XS;
 use Data::Dumper;
 use Carp qw/croak/;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
+
+$Carp::Verbose = 1;
 
 my $functions = {
-  as_is       => sub { my $value = shift; return ($value); },
-  encode_json => sub { my $value = shift; return ( encode_json($value) ); },
-  encode_bool => sub { my $value = shift; return ( defined($value) ? ( $value ? 'true' : 'false' ) : $value ); },
+  as_is        => sub { my $value = shift; return ($value); },
+  encode_json  => sub { my $value = shift; return ( encode_json($value) ); },
+  encode_bool  => sub { my $value = shift; return ( defined($value) ? ( $value ? 'true' : 'false' ) : $value ); },
+  concat_comma => sub { my $value = shift; return ( join( ',', @{$value} ) ); },
+  encode_bulk  => sub {
+    my $value = shift;
+    my $bulk  = [];
+    foreach my $item ( @{$value} ) {
+      push( @{$bulk}, encode_json($item) );
+    }
+    return ( join( "\n", @{$bulk} ) . "\n" );
+  },
 };
 
 sub _generate_params( $self, $instance ) {
@@ -24,7 +36,7 @@ sub _generate_params( $self, $instance ) {
     # TODO: This might conflice with attributes starting with _.
     #       ie. _source, _source_includes, _source_excludes
     #       Since these are optional we dont care about them for now.
-    next if ( $param =~ m/^_/ );
+    next if ( $param =~ m/^_base/ );
     my $desc = $instance->meta->{attributes}->{$param}->description;
     my $enc  = $desc->{encode_func} // 'as_is';
     my $req  = $desc->{required};
@@ -34,8 +46,15 @@ sub _generate_params( $self, $instance ) {
     # Skipp all other body params if forced_body is already set
     next if ( $forced && ( $type eq 'body' ) );
 
+    # If forced_body is set by any attribute, we will only use this body param
+    if ( $value && $fb ) {
+      $forced = 1;
+    }
+
     if ($req) {
-      croak( "Parameter: " . $param . " is required.\n" )
+      my $caller = ( caller(4) )[3];
+
+      croak( "Parameter: '" . $param . "' is required for " . $caller . ":\n\n" )
         if ( !defined($value)
         || ( ref($value) eq 'ARRAY' && !scalar( @{$value} ) )
         || ( ref($value) eq 'HASH'  && !keys( %{$value} ) ) );
@@ -53,8 +72,6 @@ sub _generate_params( $self, $instance ) {
     $instance->{$param} = undef if $self->clear_attrs;
 
   }
-
-  #print Dumper $parsed;
 
   return ($parsed);
 }

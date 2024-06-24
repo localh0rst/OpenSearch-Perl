@@ -1,8 +1,9 @@
 package OpenSearch::Document::Index;
 use strict;
 use warnings;
-use feature qw(signatures);
 use Moose;
+use feature qw(signatures);
+no warnings qw(experimental::signatures);
 
 with 'OpenSearch::Parameters::Document::Index';
 
