@@ -16,4 +16,5 @@ sub count( $self, @params ) {
   return ( OpenSearch::Search::Count->new(@params)->execute );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

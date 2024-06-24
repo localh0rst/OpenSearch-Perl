@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_post( $self, [ '_dangling', $self->index_uuid ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_post( $self, [ ( $self->index // () ), '_refresh' ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

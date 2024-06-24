@@ -130,4 +130,5 @@ sub response( $self, $tx ) {
   return ( OpenSearch::Response->new( _response => $tx->result ) );
 }
 
+#__PACKAGE__->meta->make_immutable;
 1;

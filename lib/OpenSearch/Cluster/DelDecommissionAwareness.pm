@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_delete( $self, [ '_cluster', 'decommission', 'awareness' ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

@@ -44,4 +44,5 @@ sub to_hash($self) {
   return ( { includes => $self->includes, excludes => $self->excludes } );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
