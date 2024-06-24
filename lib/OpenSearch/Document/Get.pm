@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_get( $self, [ $self->index, '_doc', ( $self->id ? $self->id : () ) ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

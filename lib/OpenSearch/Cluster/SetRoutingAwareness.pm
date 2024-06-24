@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_put( $self, [ '_cluster', 'routing', 'awareness', $self->attribute, 'weights' ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

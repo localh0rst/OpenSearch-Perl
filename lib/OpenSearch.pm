@@ -56,6 +56,7 @@ sub document($self) {
   return ( OpenSearch::Document->new );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
 
 __END__

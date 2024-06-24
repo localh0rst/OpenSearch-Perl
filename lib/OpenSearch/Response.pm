@@ -25,4 +25,5 @@ sub BUILD( $self, @rest ) {
 
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

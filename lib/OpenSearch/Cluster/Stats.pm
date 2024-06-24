@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_get( $self, [ '_cluster', 'stats', ( $self->nodes ? ( 'nodes', $self->nodes ) : () ) ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

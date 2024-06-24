@@ -63,6 +63,7 @@ sub set_routing_awareness( $self, @params ) {
   return ( OpenSearch::Cluster::SetRoutingAwareness->new(@params)->execute );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
 
 __END__

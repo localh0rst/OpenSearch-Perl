@@ -116,6 +116,7 @@ sub update_settings( $self, @params ) {
   return ( OpenSearch::Index::UpdateSettings->new(@params)->execute );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
 
 __END__

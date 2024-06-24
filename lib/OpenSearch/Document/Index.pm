@@ -21,4 +21,5 @@ sub execute($self) {
     [ $self->index, ( $self->create ? '_create' : '_doc' ), ( $self->id ? $self->id : () ) ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

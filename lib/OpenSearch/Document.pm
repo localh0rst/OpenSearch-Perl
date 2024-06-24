@@ -21,4 +21,5 @@ sub get( $self, @params ) {
   return ( OpenSearch::Document::Get->new(@params)->execute );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

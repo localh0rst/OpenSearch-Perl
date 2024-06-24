@@ -70,4 +70,5 @@ sub to_string($self) {
 
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
