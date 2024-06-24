@@ -2,7 +2,6 @@ package OpenSearch::Response;
 use strict;
 use warnings;
 use Moose;
-use Hash::AsObject;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
