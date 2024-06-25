@@ -15,16 +15,14 @@ use OpenSearch::Document;
 
 our $VERSION = '0.92';
 
-has 'base' => (
+has '_base' => (
   is  => 'rw',
   isa => 'OpenSearch::Base',
-
-  #lazy => 1,
-  #default => sub { OpenSearch::Base->initialize; }
+  init_arg => undef,
 );
 
 sub BUILD( $self, $args ) {
-  $self->base( OpenSearch::Base->new(
+  $self->_base( OpenSearch::Base->new(
     user            => $args->{user},
     pass            => $args->{pass},
     hosts           => $args->{hosts},
@@ -38,23 +36,23 @@ sub BUILD( $self, $args ) {
 }
 
 sub cluster($self) {
-  return ( OpenSearch::Cluster->new );
+  return ( OpenSearch::Cluster->new(_base => $self->_base) );
 }
 
 sub remote($self) {
-  return ( OpenSearch::Remote->new );
+  return ( OpenSearch::Remote->new(_base => $self->_base) );
 }
 
 sub search($self) {
-  return ( OpenSearch::Search->new );
+  return ( OpenSearch::Search->new(_base => $self->_base) );
 }
 
 sub index($self) {
-  return ( OpenSearch::Index->new );
+  return ( OpenSearch::Index->new(_base => $self->_base) );
 }
 
 sub document($self) {
-  return ( OpenSearch::Document->new );
+  return ( OpenSearch::Document->new(_base => $self->_base) );
 }
 
 __PACKAGE__->meta->make_immutable;

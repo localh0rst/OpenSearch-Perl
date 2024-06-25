@@ -10,9 +10,7 @@ with 'OpenSearch::Parameters::Index::Exists';
 has '_base' => (
   is       => 'rw',
   isa      => 'OpenSearch::Base',
-  required => 0,
-  lazy     => 1,
-  default  => sub { OpenSearch::Base->instance; }
+  required => 1,
 );
 
 sub execute($self) {
