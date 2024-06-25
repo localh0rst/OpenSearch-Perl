@@ -16,10 +16,11 @@ use OpenSearch::Document;
 our $VERSION = '0.92';
 
 has 'base' => (
-  is      => 'rw',
-  isa     => 'OpenSearch::Base',
-  lazy    => 1,
-  default => sub { OpenSearch::Base->initialize; }
+  is  => 'rw',
+  isa => 'OpenSearch::Base',
+
+  #lazy => 1,
+  #default => sub { OpenSearch::Base->initialize; }
 );
 
 sub BUILD( $self, $args ) {
