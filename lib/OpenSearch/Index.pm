@@ -28,92 +28,98 @@ use OpenSearch::Index::UpdateSettings;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
+has '_base' => (
+  is  => 'rw',
+  isa => 'OpenSearch::Base',
+  required => 1,
+);
+
 sub create( $self, @params ) {
-  return ( OpenSearch::Index::Create->new(@params)->execute );
+  return ( OpenSearch::Index::Create->new(@params, _base => $self->_base)->execute );
 }
 
 sub delete( $self, @params ) {
-  return ( OpenSearch::Index::Delete->new(@params)->execute );
+  return ( OpenSearch::Index::Delete->new(@params, _base => $self->_base)->execute );
 }
 
 sub set_aliases( $self, @params ) {
-  return ( OpenSearch::Index::SetAliases->new(@params)->execute );
+  return ( OpenSearch::Index::SetAliases->new(@params, _base => $self->_base)->execute );
 }
 
 sub get_aliases( $self, @params ) {
-  return ( OpenSearch::Index::GetAliases->new(@params)->execute );
+  return ( OpenSearch::Index::GetAliases->new(@params, _base => $self->_base)->execute );
 }
 
 sub clear_cache( $self, @params ) {
-  return ( OpenSearch::Index::ClearCache->new(@params)->execute );
+  return ( OpenSearch::Index::ClearCache->new(@params, _base => $self->_base)->execute );
 }
 
 sub clone( $self, @params ) {
-  return ( OpenSearch::Index::Clone->new(@params)->execute );
+  return ( OpenSearch::Index::Clone->new(@params, _base => $self->_base)->execute );
 }
 
 sub close( $self, @params ) {
-  return ( OpenSearch::Index::Close->new(@params)->execute );
+  return ( OpenSearch::Index::Close->new(@params, _base => $self->_base)->execute );
 }
 
 sub set_mappings( $self, @params ) {
-  return ( OpenSearch::Index::SetMappings->new(@params)->execute );
+  return ( OpenSearch::Index::SetMappings->new(@params, _base => $self->_base)->execute );
 }
 
 sub get_mappings( $self, @params ) {
-  return ( OpenSearch::Index::GetMappings->new(@params)->execute );
+  return ( OpenSearch::Index::GetMappings->new(@params, _base => $self->_base)->execute );
 }
 
 sub get_dangling( $self, @params ) {
-  return ( OpenSearch::Index::GetDangling->new(@params)->execute );
+  return ( OpenSearch::Index::GetDangling->new(@params, _base => $self->_base)->execute );
 }
 
 sub import_dangling( $self, @params ) {
-  return ( OpenSearch::Index::ImportDangling->new(@params)->execute );
+  return ( OpenSearch::Index::ImportDangling->new(@params, _base => $self->_base)->execute );
 }
 
 sub delete_dangling( $self, @params ) {
-  return ( OpenSearch::Index::DeleteDangling->new(@params)->execute );
+  return ( OpenSearch::Index::DeleteDangling->new(@params, _base => $self->_base)->execute );
 }
 
 sub get( $self, @params ) {
-  return ( OpenSearch::Index::Get->new(@params)->execute );
+  return ( OpenSearch::Index::Get->new(@params, _base => $self->_base)->execute );
 }
 
 sub exists( $self, @params ) {
-  return ( OpenSearch::Index::Exists->new(@params)->execute );
+  return ( OpenSearch::Index::Exists->new(@params, _base => $self->_base)->execute );
 }
 
 sub force_merge( $self, @params ) {
-  return ( OpenSearch::Index::ForceMerge->new(@params)->execute );
+  return ( OpenSearch::Index::ForceMerge->new(@params, _base => $self->_base)->execute );
 }
 
 sub open( $self, @params ) {
-  return ( OpenSearch::Index::Open->new(@params)->execute );
+  return ( OpenSearch::Index::Open->new(@params, _base => $self->_base)->execute );
 }
 
 sub refresh( $self, @params ) {
-  return ( OpenSearch::Index::Refresh->new(@params)->execute );
+  return ( OpenSearch::Index::Refresh->new(@params, _base => $self->_base)->execute );
 }
 
 sub shrink( $self, @params ) {
-  return ( OpenSearch::Index::Shrink->new(@params)->execute );
+  return ( OpenSearch::Index::Shrink->new(@params, _base => $self->_base)->execute );
 }
 
 sub split( $self, @params ) {
-  return ( OpenSearch::Index::Split->new(@params)->execute );
+  return ( OpenSearch::Index::Split->new(@params, _base => $self->_base)->execute );
 }
 
 sub stats( $self, @params ) {
-  return ( OpenSearch::Index::Stats->new(@params)->execute );
+  return ( OpenSearch::Index::Stats->new(@params, _base => $self->_base)->execute );
 }
 
 sub get_settings( $self, @params ) {
-  return ( OpenSearch::Index::GetSettings->new(@params)->execute );
+  return ( OpenSearch::Index::GetSettings->new(@params, _base => $self->_base)->execute );
 }
 
 sub update_settings( $self, @params ) {
-  return ( OpenSearch::Index::UpdateSettings->new(@params)->execute );
+  return ( OpenSearch::Index::UpdateSettings->new(@params, _base => $self->_base)->execute );
 }
 
 __PACKAGE__->meta->make_immutable;

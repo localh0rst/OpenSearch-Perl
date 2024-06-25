@@ -2,7 +2,6 @@ package OpenSearch::Base;
 use strict;
 use warnings;
 use Moose;
-use MooseX::Singleton;
 use Mojo::UserAgent;
 use Mojo::URL;
 use Data::Dumper;
