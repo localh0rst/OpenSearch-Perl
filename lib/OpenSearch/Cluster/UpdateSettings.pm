@@ -19,4 +19,5 @@ sub execute($self) {
   my $res = $self->_base->_put( $self, [ '_cluster', 'settings' ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

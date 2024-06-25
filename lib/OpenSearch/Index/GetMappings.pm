@@ -20,4 +20,5 @@ sub execute($self) {
     $self->_base->_get( $self, [ $self->index, '_mapping', ( $self->field ? ( 'field', $self->field ) : () ) ] );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;

@@ -11,4 +11,5 @@ sub info( $self, @params ) {
   return ( OpenSearch::Remote::Info->new(@params)->execute );
 }
 
+__PACKAGE__->meta->make_immutable;
 1;
