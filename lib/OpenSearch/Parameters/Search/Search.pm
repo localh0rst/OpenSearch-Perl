@@ -495,7 +495,7 @@ sub api_spec {
       encode_func => 'encode_bool',
       type        => 'url',
     },
-    ccs_minimize_roundtrips {
+    ccs_minimize_roundtrips => {
       encode_func => 'encode_bool',
       type        => 'url',
     },
