@@ -1,7 +1,8 @@
 package OpenSearch::Cluster;
 use strict;
 use warnings;
-use Moose;
+use Moo;
+use Types::Standard qw(InstanceOf);
 use Data::Dumper;
 
 use OpenSearch::Cluster::GetSettings;
@@ -20,7 +21,7 @@ no warnings qw(experimental::signatures);
 
 has '_base' => (
   is  => 'rw',
-  isa => 'OpenSearch::Base',
+  isa => InstanceOf['OpenSearch::Base'],
   required => 1,
 );
 
@@ -69,7 +70,7 @@ sub set_routing_awareness( $self, @params ) {
   return ( OpenSearch::Cluster::SetRoutingAwareness->new(@params, _base => $self->_base)->execute );
 }
 
-__PACKAGE__->meta->make_immutable;
+
 1;
 
 __END__

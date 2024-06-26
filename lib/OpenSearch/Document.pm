@@ -1,7 +1,8 @@
 package OpenSearch::Document;
 use strict;
 use warnings;
-use Moose;
+use Moo;
+use Types::Standard qw(InstanceOf);
 use Data::Dumper;
 use OpenSearch::Document::Index;
 use OpenSearch::Document::Bulk;
@@ -11,7 +12,7 @@ no warnings qw(experimental::signatures);
 
 has '_base' => (
   is  => 'rw',
-  isa => 'OpenSearch::Base',
+  isa => InstanceOf['OpenSearch::Base'],
   required => 1,
 );
 
@@ -27,5 +28,5 @@ sub get( $self, @params ) {
   return ( OpenSearch::Document::Get->new(@params, _base => $self->_base)->execute );
 }
 
-__PACKAGE__->meta->make_immutable;
+
 1;

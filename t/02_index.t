@@ -3,7 +3,7 @@ use Test::More 0.98;
 use Data::Dumper;
 
 plan skip_all => 'To test Modules, set OS_HOST, OS_USER, OS_PASS, OS_INDEX in ENV'
-  unless $ENV{OS_HOST} && $ENV{OS_USER} && $ENV{OS_PASS} && $ENV{OS_INDEX};
+  unless $ENV{OS_HOST} && exists($ENV{OS_USER}) && exists($ENV{OS_PASS}) && $ENV{OS_INDEX};
 
 my $host  = $ENV{OS_HOST};
 my $user  = $ENV{OS_USER};
@@ -18,7 +18,7 @@ my $os = OpenSearch->new(
   user            => $user,
   pass            => $pass,
   hosts           => [$host],
-  secure          => 1,
+  secure          => 0,
   allow_insecure  => 1,
   async           => 0,
   pool_count      => 10,
