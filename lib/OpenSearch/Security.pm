@@ -14,6 +14,9 @@ use OpenSearch::Security::ReloadHTTPCerts;
 use OpenSearch::Security::GetAccountDetails;
 use OpenSearch::Security::ChangePassword;
 use OpenSearch::Security::GetUser;
+use OpenSearch::Security::GetUsers;
+use OpenSearch::Security::DeleteUser;
+use OpenSearch::Security::CreateUser;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -61,6 +64,18 @@ sub change_password( $self, @params ) {
 
 sub get_user( $self, @params ) {
   return ( OpenSearch::Security::GetUser->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_users( $self, @params ) {
+  return ( OpenSearch::Security::GetUsers->new( @params, _base => $self->_base )->execute );
+}
+
+sub delete_user( $self, @params ) {
+  return ( OpenSearch::Security::DeleteUser->new( @params, _base => $self->_base )->execute );
+}
+
+sub create_user( $self, @params ) {
+  return ( OpenSearch::Security::CreateUser->new( @params, _base => $self->_base )->execute );
 }
 
 1;
