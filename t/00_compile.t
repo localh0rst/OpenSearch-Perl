@@ -63,6 +63,9 @@ use_ok $_ for qw(
   OpenSearch::Security::GetAccountDetails
   OpenSearch::Security::ChangePassword
   OpenSearch::Security::GetUser
+  OpenSearch::Security::GetUsers
+  OpenSearch::Security::DeleteUser
+  OpenSearch::Security::CreateUser
 
   OpenSearch::Response
 );
