@@ -1,0 +1,10 @@
+# Indentation
+-i=2
+# Line length
+-l=120
+# Cuddled Else
+-ce
+# Welding nested containers
+-wn
+# prefere sub braces on the right
+-nsbl
