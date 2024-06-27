@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Moo;
 use Types::Standard qw(InstanceOf);
-use feature qw(signatures);
+use feature         qw(signatures);
 no warnings qw(experimental::signatures);
 use Data::Dumper;
 use OpenSearch::Base;
@@ -13,12 +13,13 @@ use OpenSearch::Remote;
 use OpenSearch::Search;
 use OpenSearch::Index;
 use OpenSearch::Document;
+use OpenSearch::Security;
 
 our $VERSION = '0.92';
 
 has '_base' => (
-  is  => 'rw',
-  isa => InstanceOf['OpenSearch::Base'],
+  is       => 'rw',
+  isa      => InstanceOf ['OpenSearch::Base'],
   init_arg => undef,
 );
 
@@ -37,25 +38,28 @@ sub BUILD( $self, $args ) {
 }
 
 sub cluster($self) {
-  return ( OpenSearch::Cluster->new(_base => $self->_base) );
+  return ( OpenSearch::Cluster->new( _base => $self->_base ) );
 }
 
 sub remote($self) {
-  return ( OpenSearch::Remote->new(_base => $self->_base) );
+  return ( OpenSearch::Remote->new( _base => $self->_base ) );
 }
 
 sub search($self) {
-  return ( OpenSearch::Search->new(_base => $self->_base) );
+  return ( OpenSearch::Search->new( _base => $self->_base ) );
 }
 
 sub index($self) {
-  return ( OpenSearch::Index->new(_base => $self->_base) );
+  return ( OpenSearch::Index->new( _base => $self->_base ) );
 }
 
 sub document($self) {
-  return ( OpenSearch::Document->new(_base => $self->_base) );
+  return ( OpenSearch::Document->new( _base => $self->_base ) );
 }
 
+sub security($self) {
+  return ( OpenSearch::Security->new( _base => $self->_base ) );
+}
 
 1;
 
@@ -86,6 +90,7 @@ C<OpenSearch> - Unofficial Perl client for OpenSearch (https://opensearch.org/)
   my $search  = $opensearch->search;
   my $index   = $opensearch->index;
   my $document = $opensearch->document;
+  my $security = $opensearch->security;
 
 =head1 DESCRIPTION
 
@@ -105,6 +110,8 @@ endpoints are (partially) supported:
 =item * Index
 
 =item * Document
+
+=item * Security
 
 =back
 
@@ -143,6 +150,10 @@ Returns a new instance of C<OpenSearch::Index>.
 =head2 document
 
 Returns a new instance of C<OpenSearch::Document>.
+
+=head2 security
+
+Returns a new instance of C<OpenSearch::Security>.
 
 =head1 ATTRIBUTES
 
