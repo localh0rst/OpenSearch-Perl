@@ -27,9 +27,12 @@ my $functions = {
 sub _generate_params( $self, $instance ) {
   my $parsed = { url => {}, body => {} };
   my $forced = undef;
-  my $api_spec = $instance->api_spec;
 
-  foreach my $param ( keys( %{ $api_spec } ) ) {
+  # Seems like there are API Endpoints that dont require any Params
+  # See: https://opensearch.org/docs/latest/api-reference/security-apis/
+  my $api_spec = $instance->can('api_spec') ? $instance->api_spec : {};
+
+  foreach my $param ( keys( %{$api_spec} ) ) {
     my $value = $instance->$param;
 
     my $desc = $api_spec->{$param};
