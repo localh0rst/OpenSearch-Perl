@@ -60,6 +60,7 @@ use_ok $_ for qw(
   OpenSearch::Security::GetCerts
   OpenSearch::Security::ReloadTransportCerts
   OpenSearch::Security::ReloadHTTPCerts
+  OpenSearch::Security::GetAccountDetails
 
   OpenSearch::Response
 );

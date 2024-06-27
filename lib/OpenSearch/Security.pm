@@ -11,6 +11,7 @@ use OpenSearch::Security::AuthInfo;
 use OpenSearch::Security::GetCerts;
 use OpenSearch::Security::ReloadTransportCerts;
 use OpenSearch::Security::ReloadHTTPCerts;
+use OpenSearch::Security::GetAccountDetails;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -46,6 +47,10 @@ sub reload_transport_certs( $self, @params ) {
 
 sub reload_http_certs( $self, @params ) {
   return ( OpenSearch::Security::ReloadHTTPCerts->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_account_details( $self, @params ) {
+  return ( OpenSearch::Security::GetAccountDetails->new( @params, _base => $self->_base )->execute );
 }
 
 1;
