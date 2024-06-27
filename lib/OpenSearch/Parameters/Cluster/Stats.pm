@@ -9,8 +9,8 @@ with 'OpenSearch::Parameters';
 
 has 'nodes' => (
   is          => 'rw',
-  # TODO
-  #isa         => 'OpenSearch::Filter::Nodes | Str',
+  # TODO: may work if encode_func is applied to path arguments
+  #isa         => InstanceOf['OpenSearch::Filter::Nodes'] | Str,
   isa         => Str
 );
 
