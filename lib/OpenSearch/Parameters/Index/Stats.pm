@@ -2,7 +2,8 @@ package OpenSearch::Parameters::Index::Stats;
 use strict;
 use warnings;
 use feature qw(state);
-use Types::Standard qw(Str Bool HashRef Enum);
+use Types::Standard qw(Str Bool ArrayRef Enum);
+use Types::Common::String qw(NonEmptyStr);
 use Moo::Role;
 
 with 'OpenSearch::Parameters';
@@ -18,10 +19,9 @@ has 'index' => (
 
 has 'metric' => (
   is  => 'rw',
-  isa => Str,
-  # TODO
-  #isa         => 'ArrayRef[StatsMetrics]|Str',
-  reader => 'get_metrics',
+  # TODO: type checks works, but encode_func is not applied for path arguments
+  #isa => ArrayRef[$StatsMetrics] | Str,
+  isa => NonEmptyStr,
 );
 
 has 'expand_wildcards' => (
@@ -86,7 +86,7 @@ sub api_spec {
       type        => 'path',
     },
     metric => {
-      encode_func => 'concat_comma',
+      encode_func => 'as_is',
       type        => 'path',
     },
     expand_wildcards => {
