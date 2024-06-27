@@ -1,10 +1,9 @@
 package OpenSearch::Helper;
 use strict;
 use warnings;
-use Moose::Role;
+use Moo::Role;
 use JSON::XS;
 use Data::Dumper;
-use Carp qw/croak/;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -28,18 +27,13 @@ my $functions = {
 sub _generate_params( $self, $instance ) {
   my $parsed = { url => {}, body => {} };
   my $forced = undef;
+  my $api_spec = $instance->api_spec;
 
-  foreach my $param ( keys( %{ $instance->meta->{attributes} } ) ) {
+  foreach my $param ( keys( %{ $api_spec } ) ) {
     my $value = $instance->$param;
 
-    # Skip "private" attributes starting with _
-    # TODO: This might conflice with attributes starting with _.
-    #       ie. _source, _source_includes, _source_excludes
-    #       Since these are optional we dont care about them for now.
-    next if ( $param eq "_base" );
-    my $desc = $instance->meta->{attributes}->{$param}->description;
+    my $desc = $api_spec->{$param};
     my $enc  = $desc->{encode_func} // 'as_is';
-    my $req  = $desc->{required};
     my $type = $desc->{type};
     my $fb   = $desc->{forced_body};
 
@@ -49,15 +43,6 @@ sub _generate_params( $self, $instance ) {
     # If forced_body is set by any attribute, we will only use this body param
     if ( $value && $fb ) {
       $forced = 1;
-    }
-
-    if ($req) {
-      my $caller = ( caller(4) )[3];
-
-      croak( "Parameter: '" . $param . "' is required for " . $caller . ":\n\n" )
-        if ( !defined($value)
-        || ( ref($value) eq 'ARRAY' && !scalar( @{$value} ) )
-        || ( ref($value) eq 'HASH'  && !keys( %{$value} ) ) );
     }
 
     if ( $type ne 'path' ) {

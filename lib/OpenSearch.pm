@@ -1,7 +1,8 @@
 package OpenSearch;
 use strict;
 use warnings;
-use Moose;
+use Moo;
+use Types::Standard qw(InstanceOf);
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 use Data::Dumper;
@@ -17,7 +18,7 @@ our $VERSION = '0.92';
 
 has '_base' => (
   is  => 'rw',
-  isa => 'OpenSearch::Base',
+  isa => InstanceOf['OpenSearch::Base'],
   init_arg => undef,
 );
 
@@ -55,7 +56,7 @@ sub document($self) {
   return ( OpenSearch::Document->new(_base => $self->_base) );
 }
 
-__PACKAGE__->meta->make_immutable;
+
 1;
 
 __END__
