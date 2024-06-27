@@ -62,6 +62,7 @@ use_ok $_ for qw(
   OpenSearch::Security::ReloadHTTPCerts
   OpenSearch::Security::GetAccountDetails
   OpenSearch::Security::ChangePassword
+  OpenSearch::Security::GetUser
 
   OpenSearch::Response
 );

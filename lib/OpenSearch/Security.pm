@@ -13,6 +13,7 @@ use OpenSearch::Security::ReloadTransportCerts;
 use OpenSearch::Security::ReloadHTTPCerts;
 use OpenSearch::Security::GetAccountDetails;
 use OpenSearch::Security::ChangePassword;
+use OpenSearch::Security::GetUser;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -56,6 +57,10 @@ sub get_account_details( $self, @params ) {
 
 sub change_password( $self, @params ) {
   return ( OpenSearch::Security::ChangePassword->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_user( $self, @params ) {
+  return ( OpenSearch::Security::GetUser->new( @params, _base => $self->_base )->execute );
 }
 
 1;
