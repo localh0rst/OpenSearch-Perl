@@ -1,5 +1,5 @@
 requires 'perl', '5.008001';
-requires 'Moose';
+#requires 'Moose';
 requires 'JSON::XS';
 requires 'Mojolicious';
 requires 'Data::Format::Pretty::JSON';

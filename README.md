@@ -24,6 +24,7 @@
     my $search  = $opensearch->search;
     my $index   = $opensearch->index;
     my $document = $opensearch->document;
+    my $security = $opensearch->security;
 
 # DESCRIPTION
 
@@ -37,6 +38,7 @@ endpoints are (partially) supported:
 - Search
 - Index
 - Document
+- Security
 
 # IMPORTANT
 
@@ -73,6 +75,10 @@ Returns a new instance of `OpenSearch::Index`.
 ## document
 
 Returns a new instance of `OpenSearch::Document`.
+
+## security
+
+Returns a new instance of `OpenSearch::Security`.
 
 # ATTRIBUTES
 
