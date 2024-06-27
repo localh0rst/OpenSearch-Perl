@@ -7,6 +7,10 @@ use Data::Dumper;
 use OpenSearch::Security::Whoami;
 use OpenSearch::Security::SSLInfo;
 use OpenSearch::Security::PermissionsInfo;
+use OpenSearch::Security::AuthInfo;
+use OpenSearch::Security::GetCerts;
+use OpenSearch::Security::ReloadTransportCerts;
+use OpenSearch::Security::ReloadHTTPCerts;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -26,6 +30,22 @@ sub sslinfo( $self, @params ) {
 
 sub permissions_info( $self, @params ) {
   return ( OpenSearch::Security::PermissionsInfo->new( @params, _base => $self->_base )->execute );
+}
+
+sub auth_info( $self, @params ) {
+  return ( OpenSearch::Security::AuthInfo->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_certs( $self, @params ) {
+  return ( OpenSearch::Security::GetCerts->new( @params, _base => $self->_base )->execute );
+}
+
+sub reload_transport_certs( $self, @params ) {
+  return ( OpenSearch::Security::ReloadTransportCerts->new( @params, _base => $self->_base )->execute );
+}
+
+sub reload_http_certs( $self, @params ) {
+  return ( OpenSearch::Security::ReloadHTTPCerts->new( @params, _base => $self->_base )->execute );
 }
 
 1;
