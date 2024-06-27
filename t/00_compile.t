@@ -52,6 +52,15 @@ use_ok $_ for qw(
   OpenSearch::Cluster::Stats
   OpenSearch::Cluster::UpdateSettings
 
+  OpenSearch::Security
+  OpenSearch::Security::Whoami
+  OpenSearch::Security::SSLInfo
+  OpenSearch::Security::PermissionsInfo
+  OpenSearch::Security::AuthInfo
+  OpenSearch::Security::GetCerts
+  OpenSearch::Security::ReloadTransportCerts
+  OpenSearch::Security::ReloadHTTPCerts
+
   OpenSearch::Response
 );
 
