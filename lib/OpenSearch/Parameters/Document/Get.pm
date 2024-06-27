@@ -16,7 +16,8 @@ has 'index' => (
 
 has 'id' => (
   is          => 'rw',
-  isa         => Str,
+  isa         => NonEmptyStr,
+  required    => 1,
 );
 
 has 'preference' => (

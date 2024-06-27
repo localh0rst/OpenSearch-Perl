@@ -15,7 +15,7 @@ has '_base' => (
 );
 
 sub execute($self) {
-  my $res = $self->_base->_get( $self, [ $self->index, '_doc', ( $self->id ? $self->id : () ) ] );
+  my $res = $self->_base->_get( $self, [ $self->index, '_doc', $self->id ] );
 }
 
 
