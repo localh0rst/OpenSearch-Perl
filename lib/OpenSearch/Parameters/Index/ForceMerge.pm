@@ -83,7 +83,7 @@ sub api_spec {
       type        => 'url',
     },
     max_num_segments => {
-      encode_func => 'encode_bool',
+      encode_func => 'as_is',
       type        => 'url',
     },
     only_expunge_deletes => {
