@@ -29,9 +29,29 @@ use_ok $_ for qw(
   OpenSearch::Index::UpdateSettings
 
   OpenSearch::Search
+  OpenSearch::Search::Count
+  OpenSearch::Search::Search
+
   OpenSearch::Remote
+  OpenSearch::Remote::Info
+
   OpenSearch::Document
+  OpenSearch::Document::Bulk
+  OpenSearch::Document::Get
+  OpenSearch::Document::Index
+
   OpenSearch::Cluster
+  OpenSearch::Cluster::AllocationExplain
+  OpenSearch::Cluster::DelDecommissionAwareness
+  OpenSearch::Cluster::DelRoutingAwareness
+  OpenSearch::Cluster::GetDecommissionAwareness
+  OpenSearch::Cluster::GetSettings
+  OpenSearch::Cluster::Health
+  OpenSearch::Cluster::SetDecommissionAwareness
+  OpenSearch::Cluster::SetRoutingAwareness
+  OpenSearch::Cluster::Stats
+  OpenSearch::Cluster::UpdateSettings
+
   OpenSearch::Response
 );
 
