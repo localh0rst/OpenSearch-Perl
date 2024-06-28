@@ -15,7 +15,7 @@ use OpenSearch::Index;
 use OpenSearch::Document;
 use OpenSearch::Security;
 
-our $VERSION = '0.92';
+our $VERSION = '0.94';
 
 has '_base' => (
   is       => 'rw',

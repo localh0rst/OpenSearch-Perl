@@ -75,7 +75,7 @@
          "web" : "https://github.com/localh0rst/OpenSearch-Perl"
       }
    },
-   "version" : "0.92",
+   "version" : "0.94",
    "x_contributors" : [
       "Nicolas Franck <nicolas.franck@ugent.be>",
       "localh0rst <git@fail.ninja>",
