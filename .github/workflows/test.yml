@@ -22,6 +22,10 @@ jobs:
           perl-version: ${{ matrix.perl }}
       - name: Install dependencies
         run: cpanm -nq --installdeps --with-develop --with-recommends .
+      - name: Install Opensearch
+        uses: ankane/setup-opensearch@v1
+        with:
+          opensearch-version: 2
       - name: Run test
         run: prove -lr t
 
