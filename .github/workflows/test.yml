@@ -5,7 +5,7 @@ env:
   OS_USER:
   OS_PASS:
   OS_INDEX: os-perl-benchmark-index
-  OS_SSL: 1
+  OS_SSL: 0
 jobs:
   build:
     runs-on: ubuntu-latest
