@@ -1,5 +1,11 @@
 name: test
 on: [push, pull_request]
+env: 
+  OS_HOST: localhost:9200
+  OS_USER:
+  OS_PASS:
+  OS_INDEX: os-perl-benchmark-index
+  OS_SSL: 0
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,6 +28,10 @@ jobs:
           perl-version: ${{ matrix.perl }}
       - name: Install dependencies
         run: cpanm -nq --installdeps --with-develop --with-recommends .
+      - name: Install Opensearch
+        uses: ankane/setup-opensearch@v1
+        with:
+          opensearch-version: 2
       - name: Run test
         run: prove -lr t
 
