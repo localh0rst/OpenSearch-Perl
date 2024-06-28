@@ -107,7 +107,7 @@ This module provides an interface to the OpenSearch Cluster API endpoints.
 
   $cluster->get_settings;
 
-=head2 put_settings
+=head2 update_settings
 
   $cluster->put_settings(
     persistent => {
