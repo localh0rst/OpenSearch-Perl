@@ -66,6 +66,8 @@ use_ok $_ for qw(
   OpenSearch::Security::GetUsers
   OpenSearch::Security::DeleteUser
   OpenSearch::Security::CreateUser
+  OpenSearch::Security::PatchUser
+  OpenSearch::Security::PatchUsers
 
   OpenSearch::Response
 );
