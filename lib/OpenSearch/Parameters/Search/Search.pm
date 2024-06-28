@@ -1,45 +1,47 @@
 package OpenSearch::Parameters::Search::Search;
 use strict;
 use warnings;
-use feature qw(state);
+use feature         qw(state);
 use Types::Standard qw(Str Bool Int ArrayRef HashRef);
 use Moo::Role;
+
 #use OpenSearch::Filter::Source;
 
 with 'OpenSearch::Parameters';
 
 has 'index' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'sort' => (
-  is          => 'rw',
-  isa         => ArrayRef[HashRef],
+  is  => 'rw',
+  isa => ArrayRef [HashRef],
 );
 
 has 'version' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'timeout' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'terminate_after' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'stats' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has '_source' => (
-  is          => 'rw',
+  is => 'rw',
+
   # TODO
   #isa         => 'OpenSearch::Filter::Source | Str',
   isa         => Str,
@@ -50,229 +52,234 @@ has '_source' => (
 );
 
 has 'size' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'seq_no_primary_term' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'query' => (
-  is          => 'rw',
-  isa         => HashRef,
+  is  => 'rw',
+  isa => HashRef,
 );
 
 has 'min_score' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'indices_boost' => (
-  is          => 'rw',
-  isa         => ArrayRef[HashRef],
+  is  => 'rw',
+  isa => ArrayRef [HashRef],
 );
 
 has 'from' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'explain' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'fields' => (
-  is          => 'rw',
-  isa         => ArrayRef,
+  is  => 'rw',
+  isa => ArrayRef,
 );
 
 has 'docvalue_fields' => (
-  is          => 'rw',
-  isa         => ArrayRef[HashRef],
+  is  => 'rw',
+  isa => ArrayRef [HashRef],
 );
 
 has 'aggs' => (
-  is          => 'rw',
-  isa         => HashRef,
+  is  => 'rw',
+  isa => HashRef,
 );
 
 has 'search_after' => (
-  is          => 'rw',
-  isa         => ArrayRef,
+  is  => 'rw',
+  isa => ArrayRef,
 );
 
 has 'scroll_id' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'max_concurrent_shard_requests' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'stored_fields' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'ignore_throttled' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'allow_no_indices' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'q' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'request_cache' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'analyze_wildcard' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'suggest_text' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'rest_total_hits_as_int' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'routing' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 # See https://github.com/localh0rst/OpenSearch-Perl/issues/8
 has 'track_total_hits' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'cancel_after_time_interval' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has '_source_includes' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'pre_filter_shard_size' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'suggest_field' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'preference' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'suggest_size' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'default_operator' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'suggest_mode' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'allow_partial_search_results' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'search_type' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'expand_wildcards' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'typed_keys' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'ignore_unavailable' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'df' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'batched_reduce_size' => (
-  is          => 'rw',
-  isa         => Int,
+  is  => 'rw',
+  isa => Int,
 );
 
 has 'analyzer' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has '_source_excludes' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'track_scores' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'lenient' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'ccs_minimize_roundtrips' => (
-  is          => 'rw',
-  isa         => Bool,
+  is  => 'rw',
+  isa => Bool,
 );
 
 has 'scroll' => (
-  is          => 'rw',
-  isa         => Str,
+  is  => 'rw',
+  isa => Str,
 );
 
 has 'highlight' => (
-  is          => 'rw',
-  isa         => HashRef,
+  is  => 'rw',
+  isa => HashRef,
+);
+
+has 'profile' => (
+  is  => 'rw',
+  isa => Bool,
 );
 
 around [
@@ -284,7 +291,7 @@ around [
     routing track_total_hits cancel_after_time_interval _source_includes pre_filter_shard_size
     suggest_field preference suggest_size default_operator suggest_mode allow_partial_search_results
     search_type expand_wildcards typed_keys ignore_unavailable df batched_reduce_size analyzer
-    _source_excludes track_scores lenient ccs_minimize_roundtrips scroll highlight
+    _source_excludes track_scores lenient ccs_minimize_roundtrips scroll highlight profile
     /
 ] => sub {
   my $orig = shift;
@@ -506,7 +513,11 @@ sub api_spec {
     highlight => {
       encode_func => 'as_is',
       type        => 'body',
-    }
+    },
+    profile => {
+      encode_func => 'encode_bool',
+      type        => 'body',
+    },
   };
 }
 
