@@ -2,6 +2,8 @@ name: test
 on: [push, pull_request]
 env: 
   OS_HOST: localhost:9200
+  OS_USER:
+  OS_PASS:
   OS_INDEX: os-perl-benchmark-index
   OS_SSL: 1
 jobs:
