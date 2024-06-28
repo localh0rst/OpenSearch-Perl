@@ -22,6 +22,7 @@ use OpenSearch::Security::PatchUsers;
 use OpenSearch::Security::GetRole;
 use OpenSearch::Security::GetRoles;
 use OpenSearch::Security::DeleteRole;
+use OpenSearch::Security::CreateRole;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -101,6 +102,10 @@ sub get_roles( $self, @params ) {
 
 sub delete_role( $self, @params ) {
   return ( OpenSearch::Security::DeleteRole->new( @params, _base => $self->_base )->execute );
+}
+
+sub create_role( $self, @params ) {
+  return ( OpenSearch::Security::CreateRole->new( @params, _base => $self->_base )->execute );
 }
 
 1;
