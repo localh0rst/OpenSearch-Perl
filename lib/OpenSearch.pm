@@ -119,11 +119,16 @@ endpoints are (partially) supported:
 
 This module is still in development and should not be used in production unless you
 are willing to accept the risks associated with using an incomplete and untested
-module. It heavily relies on L<Moose> and L<Mojo::UserAgent>. Due to the use of
-L<Moose>, startup time is slower than other modules. However, the use of L<Mojo::UserAgent>
-allows for asynchronous requests to be made to the OpenSearch server.
+module. It heavily relies on L<Moo> and L<Mojo::UserAgent>. Due to the use of L<Mojo::UserAgent>,
+it is possible to use asynchronous requests (including promises).
 
 CERTIFICATE AUTHENTICATION IS NOT YET TESTED! Feel free to test it and report back to me.
+
+=head1 ATTRIBUTES/PARAMATERS OF API ENDPOINTS
+
+For a list of available parameters for all supported API Endpoints see the OpenSearch API documentation.
+As an alternative you can have a look in the Source of the corresponding C<OpenSearch::Parameters::*>
+modules.
 
 =head1 METHODS
 
@@ -190,7 +195,9 @@ A boolean value indicating whether to clear the attributes of most objects.
 =item * async
 
 A boolean value indicating whether to use asynchronous requests when connecting to the OpenSearch server.
-This will return a L<Mojo::Promise> object instead of the actual response.
+When set to true, all requests will return a L<Mojo::Promise> object that will (eventually) resolve to 
+an L<OpenSearch::Response> object. If it is set to false, all requests will return an L<OpenSearch::Response> 
+object.
 
 =item * max_connections
 
@@ -278,4 +285,7 @@ C<benchmark-index-async.pl> script:
 =head1 AUTHOR
 
 C<OpenSearch> Perl Module was written by Sebastian Grenz, C<< <git at fail.ninja> >>
+
+=head1 CONTRIBUTORS
+Nicolas Franck (https://github.com/nicolasfranck)
 

@@ -20,56 +20,55 @@ use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
 has '_base' => (
-  is  => 'rw',
-  isa => InstanceOf['OpenSearch::Base'],
+  is       => 'rw',
+  isa      => InstanceOf ['OpenSearch::Base'],
   required => 1,
 );
 
 sub get_settings( $self, @params ) {
-  return ( OpenSearch::Cluster::GetSettings->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::GetSettings->new( @params, _base => $self->_base )->execute );
 }
 
 sub update_settings( $self, @params ) {
-  return ( OpenSearch::Cluster::UpdateSettings->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::UpdateSettings->new( @params, _base => $self->_base )->execute );
 }
 
 sub health( $self, @params ) {
-  return ( OpenSearch::Cluster::Health->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::Health->new( @params, _base => $self->_base )->execute );
 }
 
 sub stats( $self, @params ) {
-  return ( OpenSearch::Cluster::Stats->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::Stats->new( @params, _base => $self->_base )->execute );
 }
 
 sub allocation_explain( $self, @params ) {
-  return ( OpenSearch::Cluster::AllocationExplain->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::AllocationExplain->new( @params, _base => $self->_base )->execute );
 }
 
 # TODO: Look more into Decommission Endpoints...
 sub get_decommission_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::GetDecommissionAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::GetDecommissionAwareness->new( @params, _base => $self->_base )->execute );
 }
 
 sub set_decommission_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::SetDecommissionAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::SetDecommissionAwareness->new( @params, _base => $self->_base )->execute );
 }
 
 sub del_decommission_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::DelDecommissionAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::DelDecommissionAwareness->new( @params, _base => $self->_base )->execute );
 }
 
 sub get_routing_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::GetRoutingAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::GetRoutingAwareness->new( @params, _base => $self->_base )->execute );
 }
 
 sub del_routing_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::DelRoutingAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::DelRoutingAwareness->new( @params, _base => $self->_base )->execute );
 }
 
 sub set_routing_awareness( $self, @params ) {
-  return ( OpenSearch::Cluster::SetRoutingAwareness->new(@params, _base => $self->_base)->execute );
+  return ( OpenSearch::Cluster::SetRoutingAwareness->new( @params, _base => $self->_base )->execute );
 }
-
 
 1;
 
@@ -101,15 +100,6 @@ C<OpenSearch::Cluster> - OpenSearch Cluster API Endpoints
 =head1 DESCRIPTION
 
 This module provides an interface to the OpenSearch Cluster API endpoints.
-If i read the documentation correctly, all endpoints are supported. For
-a list of avaialable parameters see the official documentation.
-
-  my $os = OpenSearch->new(
-    ...
-    async => 1
-  );
-
-all methods return a L<Mojo::Promise> object.
 
 =head1 METHODS
 
