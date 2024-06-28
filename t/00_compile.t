@@ -68,6 +68,8 @@ use_ok $_ for qw(
   OpenSearch::Security::CreateUser
   OpenSearch::Security::PatchUser
   OpenSearch::Security::PatchUsers
+  OpenSearch::Security::GetRoles
+  OpenSearch::Security::GetRole
 
   OpenSearch::Response
 );

@@ -19,6 +19,8 @@ use OpenSearch::Security::DeleteUser;
 use OpenSearch::Security::CreateUser;
 use OpenSearch::Security::PatchUser;
 use OpenSearch::Security::PatchUsers;
+use OpenSearch::Security::GetRole;
+use OpenSearch::Security::GetRoles;
 use feature qw(signatures);
 no warnings qw(experimental::signatures);
 
@@ -86,6 +88,14 @@ sub patch_user( $self, @params ) {
 
 sub patch_users( $self, @params ) {
   return ( OpenSearch::Security::PatchUsers->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_role( $self, @params ) {
+  return ( OpenSearch::Security::GetRole->new( @params, _base => $self->_base )->execute );
+}
+
+sub get_roles( $self, @params ) {
+  return ( OpenSearch::Security::GetRoles->new( @params, _base => $self->_base )->execute );
 }
 
 1;
