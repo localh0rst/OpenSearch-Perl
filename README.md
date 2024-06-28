@@ -44,11 +44,16 @@ endpoints are (partially) supported:
 
 This module is still in development and should not be used in production unless you
 are willing to accept the risks associated with using an incomplete and untested
-module. It heavily relies on [Moose](https://metacpan.org/pod/Moose) and [Mojo::UserAgent](https://metacpan.org/pod/Mojo%3A%3AUserAgent). Due to the use of
-[Moose](https://metacpan.org/pod/Moose), startup time is slower than other modules. However, the use of [Mojo::UserAgent](https://metacpan.org/pod/Mojo%3A%3AUserAgent)
-allows for asynchronous requests to be made to the OpenSearch server.
+module. It heavily relies on [Moo](https://metacpan.org/pod/Moo) and [Mojo::UserAgent](https://metacpan.org/pod/Mojo%3A%3AUserAgent). Due to the use of [Mojo::UserAgent](https://metacpan.org/pod/Mojo%3A%3AUserAgent),
+it is possible to use asynchronous requests (including promises).
 
 CERTIFICATE AUTHENTICATION IS NOT YET TESTED! Feel free to test it and report back to me.
+
+# ATTRIBUTES/PARAMATERS OF API ENDPOINTS
+
+For a list of available parameters for all supported API Endpoints see the OpenSearch API documentation.
+As an alternative you can have a look in the Source of the corresponding `OpenSearch::Parameters::*`
+modules.
 
 # METHODS
 
@@ -113,7 +118,9 @@ Returns a new instance of `OpenSearch::Security`.
 - async
 
     A boolean value indicating whether to use asynchronous requests when connecting to the OpenSearch server.
-    This will return a [Mojo::Promise](https://metacpan.org/pod/Mojo%3A%3APromise) object instead of the actual response.
+    When set to true, all requests will return a [Mojo::Promise](https://metacpan.org/pod/Mojo%3A%3APromise) object that will (eventually) resolve to 
+    an [OpenSearch::Response](https://metacpan.org/pod/OpenSearch%3A%3AResponse) object. If it is set to false, all requests will return an [OpenSearch::Response](https://metacpan.org/pod/OpenSearch%3A%3AResponse) 
+    object.
 
 - max\_connections
 
@@ -192,3 +199,6 @@ These are the results from my local machine:
 # AUTHOR
 
 `OpenSearch` Perl Module was written by Sebastian Grenz, `<git at fail.ninja>`
+
+# CONTRIBUTORS
+Nicolas Franck (https://github.com/nicolasfranck)
