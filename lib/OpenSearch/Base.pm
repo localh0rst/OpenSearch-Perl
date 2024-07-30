@@ -86,7 +86,7 @@ sub do_request( $self, $method, $url, $body ) {
       $body )->then( sub($tx) {
     return ( $self->response($tx) );
       } )->catch( sub($error) {
-    return ($error);
+    return ( $self->response($error) );
       } );
 
   return ($promise) if $self->async;
@@ -125,7 +125,16 @@ sub _put( $self, $instance, $path = [] ) {
 }
 
 sub response( $self, $tx ) {
-  return ( OpenSearch::Response->new( _response => $tx->result ) );
+  if ( ref($tx) ) {
+    return ( OpenSearch::Response->new( _response => $tx->result ) );
+  } else {
+    return ( OpenSearch::Response->new(
+      success => 0,
+      error   => $tx,
+      data    => {},
+    ) );
+
+  }
 }
 
 #
